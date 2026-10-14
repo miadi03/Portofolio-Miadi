@@ -21,7 +21,6 @@ html{
 ::-webkit-scrollbar-thumb {
     background: #888;
 }
-
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
@@ -78,7 +77,6 @@ section .title::after{
 }
 
 /* navbar styling */
-
 .navbar{
     position: fixed !important;
     width: 100% ;
@@ -97,7 +95,6 @@ section .title::after{
     justify-content: space-between !important;
     text-decoration: none ;
 }
-
 .navbar .logo{
     text-decoration: none ;
 }
@@ -118,8 +115,6 @@ section .title::after{
 .navbar .menu{
     padding-left: 500px;
 }
-
-
 .navbar .menu li{
     list-style: none;
     display: inline-block;
@@ -176,7 +171,6 @@ section .title::after{
     filter: brightness(90%);
 }
 
-
 /* home section styling */
 .home{
     display: flex;
@@ -188,12 +182,17 @@ section .title::after{
     background-attachment: fixed;
     font-family: 'Ubuntu', sans-serif;
 }
-.home .max-width{
+.home .max-width {
   width: 100%;
   display: flex;
+  align-items: center; 
+  justify-content: space-between; 
 }
 .home .max-width .row{
   margin-right: 0;
+}
+.home .home-content {
+    width: 50%;
 }
 .home .home-content .text-1{
     font-size: 27px;
@@ -211,48 +210,158 @@ section .title::after{
     color: crimson;
     font-weight: 500;
 }
-.home .home-content a{
-    display: inline-block;
-    background: crimson;
-    color: #fff;
-    font-size: 25px;
-    padding: 12px 36px;
-    margin-top: 20px;
-    font-weight: 400;
-    border-radius: 6px;
-    border: 2px solid crimson;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-.home .home-content a:hover{
-    color: crimson;
-    background: none;
-    text-decoration: none;
-}
 
-/*nyobe gambar*/
-.home .saya img{
-    margin-top: px;
-    margin-right: 20px;
-    height: 40rem;
-    width: 30rem;
+/* HERO VISUAL (BAGIAN KANAN: IKON SOFTWARE MELAYANG) */
+.hero-visual {
+    position: relative;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+.software-icons {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+.float-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    object-fit: contain;
+    cursor: pointer; 
+    opacity: 0; 
+    visibility: hidden;
+    transition: transform 0.1s linear, opacity 1s ease-in-out;
+}
+.float-icon.tampil {
+    opacity: 1;
+    visibility: visible;
+}
+.icon-blender { width: 90px; height: 90px; }
+.icon-ae { width: 75px; height: 75px; }
+.icon-pr { width: 70px; height: 70px; }
+.icon-ai { width: 65px; height: 65px; }
+.icon-ps { width: 80px; height: 80px; }
+.icon-canva { width: 55px; height: 55px; }
+.icon-capcut { width: 60px; height: 60px; }
 
-/* about section styling */
+/* ========================================================================== */
+/* FOTO CASUAL LINGKARAN & CINCIN AUDIO SPECTRUM NEON ENERGIK */
+/* ========================================================================== */
 .about .title::after{
     content: "Miadi";
 }
 .about .about-content .left{
     width: 45%;
+    display: flex;
+    justify-content: center;
 }
-.about .about-content .left img{
-    height: 400px;
-    width: 400px;
+.casual-photo-wrapper {
+    position: relative;
+    width: 340px;
+    height: 340px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.casual-photo {
+    width: 290px;
+    height: 290px;
     object-fit: cover;
-    border-radius: 6px;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15), 
-    0px 3px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+    background: #111;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
+
+/* EFEK AUDIO SPECTRUM CINCIN NEON MELINGKAR YANG ENERGIK */
+.neon-audio-ring {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 50%;
+    border: 4px solid rgba(220, 20, 60, 0.3);
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+/* Saat Musik Aktif: Berputar cepat dan berdenyut kuat mengikuti beat */
+.neon-audio-ring.active {
+    opacity: 1;
+    border-color: #ff1a40;
+    box-shadow: 0 0 20px crimson, 0 0 40px rgba(220, 20, 60, 0.8), inset 0 0 20px crimson;
+    animation: rotateRing 3s linear infinite, energicBeatBounce 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes rotateRing {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes energicBeatBounce {
+    0% { transform: scale(0.98); box-shadow: 0 0 15px crimson, inset 0 0 10px crimson; }
+    100% { transform: scale(1.06); box-shadow: 0 0 35px #ff4d6d, 0 0 60px rgba(255, 77, 109, 0.9), inset 0 0 30px #ff4d6d; }
+}
+
+/* ========================================================================== */
+/* STYLING TOMBOL "LIHAT SEMUA" YANG STYLISH & INTERAKTIF */
+/* ========================================================================== */
+.project-toggle-wrapper {
+    margin-top: -20px;
+    margin-bottom: 30px;
+}
+.btn-custom-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, crimson, #b3002d);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 12px 35px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 0 8px 20px rgba(220, 20, 60, 0.4);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-family: 'Poppins', sans-serif;
+}
+.btn-custom-action:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(220, 20, 60, 0.6);
+    background: linear-gradient(135deg, #ff1a40, crimson);
+    color: #fff;
+}
+.btn-tutup {
+    background: linear-gradient(135deg, #f39c12, #d68910);
+    box-shadow: 0 8px 20px rgba(243, 156, 18, 0.4);
+}
+.btn-tutup:hover {
+    box-shadow: 0 12px 25px rgba(243, 156, 18, 0.6);
+    background: linear-gradient(135deg, #f5b041, #f39c12);
+}
+
+/* ========================================================================== */
+/* ANIMASI SCROLL DUA ARAH (FADE IN / FADE OUT) */
+/* ========================================================================== */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .about .about-content .right{
     width: 55%;
 }
@@ -279,7 +388,6 @@ section .title::after{
     border: 2px solid crimson;
     transition: all 0.3s ease;
     text-decoration: none;
-    
 }
 .about .about-content .right a:hover{
     color: crimson;
@@ -333,23 +441,20 @@ section .title::after{
     margin: 10px 0 7px 0;
 }
 
-
-
 .card.img{
-    max-width: 350px; /* Sesuaikan dengan ukuran yang diinginkan */
+    max-width: 350px; 
     margin: 0 auto;
 }
 .card_website_img{
-    max-width: 500px; /* Sesuaikan dengan ukuran yang diinginkan */
+    max-width: 500px; 
     margin: 0 auto;
 }
-/* ---------------------------------------------------------- */
+
 .card_website_img.video:hover{
     transform: scale(1.2);
     transition: ease .5s;
     box-shadow: 0 10px 20px rgb(255, 0, 0);
 }
-
 .card_website_img.website:hover{
     transform: scale(1.2);
     transition: ease .5s;
@@ -361,8 +466,6 @@ section .title::after{
     box-shadow: 0 10px 20px orangered;
 }
 
-/* ------------------------------------------------------------ */
-
 h2.card__title.video{
     font-size: 25px;
     background-color: rgba(227, 30, 30, 0.907);
@@ -371,7 +474,6 @@ h2.card__title.video{
     padding: 2px;
     border-radius: 5px;
 }
-
 h2.card__title.website{
     font-size: 25px;
     background-color: rgba(0, 179, 255, 0.855);
@@ -380,7 +482,6 @@ h2.card__title.website{
     padding: 2px;
     border-radius: 5px;
 }
-
 h2.card__title.desain{
     font-size: 25px;
     background-color: orangered;
@@ -390,7 +491,6 @@ h2.card__title.desain{
     border-radius: 5px;
 }
 
-
 .card__iframe {
     width: 500px;
     height: 328px;
@@ -399,23 +499,13 @@ h2.card__title.desain{
     display: block;
 }
 
-
-
 .card-img {
-    width: 100%; /* Mengikuti lebar container */
-    height: auto; /* Menjaga proporsi gambar */
-    border-radius: 1.5rem; /* Memberikan sudut melengkung */
-    display: block; /* Menghapus ruang bawah gambar (jika ada) */
-    object-fit: cover; /* Opsional, gunakan untuk memotong gambar agar pas di container */
+    width: 100%; 
+    height: auto; 
+    border-radius: 1.5rem; 
+    display: block; 
+    object-fit: cover; 
 }
-
-/* .card.scroll-container {
-    max-height: 400px; 
-    overflow: hidden; 
-    position: relative;
-} */
-
-
 
 .row.row-cols-1.row-cols-md-2.g-4 .card{
     background: transparent !important;
@@ -425,80 +515,15 @@ h2.card__title{
     z-index: 1000;
 }
 
-
-
-.btn-lihat{
-    padding: 7px;
-    color: #fff;
-    background: crimson;
-    border-radius: 5px;
-    border: none;
-}
-
-.btn-tutup{
-    padding: 7px;
-    color: #fff;
-    background: rgb(253, 185, 11);
-    border-radius: 5px;
-    border: none;
-}
-
-
-
 .card.card-body1, .card.card-body2, .card.card-body3, .card.card-body4, .card.card-body5{
     background-color: transparent;
 }
 
-
-
-
-/* ================================================ */
-
-.container2 {
-    display: grid;
-    place-items: center;
-    margin-inline: 1.5rem;
-    padding-block: 1rem;
-  }
-
-  .kartu .judul{
-    margin: auto;
-    padding: 0 0 1rem;
-    font-size: 2rem;
-    color: black;
-    text-align: center;
-  }
-  
-  .kartu .judul span{
-    color: crimson;
-  }
-  
-   .kartu .judul-p{
-    padding-bottom: 2.5rem;
-    font-size: 1.5rem;
-    color: black;
-    margin: auto;
-    text-align: center;
-  }
-
-  
-  .card__container2 {
-    display: grid;
-    row-gap: 3.5rem;
-  }
-  
-  .card__article {
+.card__article {
     position: relative;
     overflow: hidden;
-  }
-  
-  .card__img {
-    width: 328px;
-    height: 328px;
-    border-radius: 1.5rem;
-  }
-  
-  .card__data {
+}
+.card__data {
     width: 500px;
     background-color: white;
     padding: 1.5rem 1.5rem;
@@ -512,66 +537,31 @@ h2.card__title{
     opacity: 0;
     transition: opacity 1s 1s;
     z-index: 1000;
-  }
-  
-  .card__description {
-    display: block;
-    font-size: 1.3rem;
-    margin-bottom: 20px;
-  }
-  
-  .card__title {
+}
+.card__title {
     font-size: 1.3rem;
     font-weight: 500;
     color: maroon;
     margin-bottom: 20px;
     cursor: pointer;
-  }
-  
-  .card__button {
+}
+.card__button {
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     color: white;
     background-color: crimson;
     padding: 5px 10px;
     border-radius: 5px;
-    text-decoration: none;
-  }
-  
-  .card__button:hover {
+}
+.card__button:hover {
     background: none;
     color: #e71247;
     outline: 2px solid crimson;
-  }
-
-
-  span.toko{
+}
+span.toko{
     color: yellow;
-
-  }
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-/* --------------------------------------------------- */
-
-
-
-/* --------------------------------------------------- */
+}
 
 /* Card default state */
 .card__article .card__data {
@@ -579,244 +569,13 @@ h2.card__title{
     transform: translateY(0);
     transition: opacity 0.5s ease, transform 0.8s ease;
     pointer-events: none;
-  }
-  
-  /* Saat class .show ditambahkan lewat JS */
-  .card__article.show .card__data {
-    opacity: 1;
-    transform: translateY(-7rem);
-    pointer-events: auto;
-  }
-  
-  /* Kontrol overflow saat tampil */
-  .card__article.show {
+}
+.card__article.show {
     overflow: initial;
-  }
-  
-  /* Kontrol overflow saat disembunyikan */
-  .card__article:not(.show) {
+}
+.card__article:not(.show) {
     overflow: hidden;
-  }
-  
-  /* --------------------------------------------------- */
-  
-  /* Animasi tambahan jika ingin (bisa disesuaikan) */
-  @keyframes show-data {
-    50% {
-      transform: translateY(-10rem);
-    }
-    100% {
-      transform: translateY(-7rem);
-    }
-  }
-  
-  @keyframes remove-data {
-    0% {
-      transform: translateY(-7rem);
-    }
-    50% {
-      transform: translateY(-10rem);
-    }
-    100% {
-      transform: translateY(.5rem);
-    }
-  }
-  
-  /* ================================================ */
-  
-
-
-
-
-/* ================================================ */
-
-
-
-
-
-
-
-/* ======================================================================== */
-
-
-.header__image {
-    position: relative;
-  }
-  
-  .header__image img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border: 0.5rem solid var(--extra-light);
-    border-radius: 2rem;
-    /* box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1); */
-  }
-
-
-  /* blender */
-  
-  .header__image img:nth-child(1) {
-    max-width: 170px;
-    transform: translate(-65%, -50%);
-
-  }
-  /* ae */
-  
-  .header__image img:nth-child(2) {
-    max-width: 170px;
-    transform: translate(-60%, -25%);
-    
-  }
-
-  /* premiere */
-  .header__image img:nth-child(2) {
-    max-width: 170px;
-    transform: translate(5%, -20%);
-  }
-
-
-
-    .header__image .floating.blender{
-        top: 220px;
-        left: 350px;
-        z-index: 300;
-        box-shadow: -7px 7px 5px rgba(0, 0, 0, 0.515)
-
-    }
-    .header__image .floating.premiere{
-        top: -130px;
-        left: -20px;
-        z-index: 100;
-        box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.427)
-
-    }
-    .header__image .floating.ae{
-        top: -90px;
-        left: 70px;
-        z-index: 200;
-        box-shadow: 7px 7px 5px 2px rgba(0, 0, 0, 0.427)
-
-
-    }
-
-
-.header__image {
-    position: relative;
-  }
-  
-  .floating {
-    position: absolute;
-    animation: float 2s ease-in-out infinite;
-  }
-
-
-
-  @keyframes float {
-    0% {
-      transform: translate(0, 0);
-    }
-    50% {
-      transform: translate(0, -20px);
-    }
-    100% {
-      transform: translate(0, 0);
-    }
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* skills section styling */
-/* .skills{
-    background: #d9d9d9;
-    height: 100vh;
 }
-.skills .title::after{
-    background: #d9d9d9;
-    content: "Miadi";
-}
-.skills .skills-content .column{
-    width: calc(50% - 30px);
-}
-.skills .skills-content .left .text{
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-.skills .skills-content .left p{
-    text-align: justify;
-}
-.skills .skills-content .left a{
-    display: inline-block;
-    background: crimson;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 500;
-    padding: 8px 16px;
-    margin-top: 20px;
-    border-radius: 6px;
-    border: 2px solid crimson;
-    transition: all 0.3s ease;
-}
-.skills .skills-content .left a:hover{
-    color: crimson;
-    background: none;
-}
-.skills .skills-content .right .bars{
-    margin-bottom: 15px;
-}
-.skills .skills-content .right .info{
-    display: flex;
-    margin-bottom: 5px;
-    align-items: center;
-    justify-content: space-between;
-}
-.skills .skills-content .right span{
-    font-weight: 500;
-    font-size: 18px;
-}
-.skills .skills-content .right .line{
-    height: 5px;
-    width: 100%;
-    background: lightgrey;
-    position: relative;
-}
-.skills .skills-content .right .line::before{
-    content: "";
-    position: absolute;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: crimson;
-}
-.skills-content .right .html::before{
-    width: 10%;
-}
-.skills-content .right .css::before{
-    width: 70%;
-}
-.skills-content .right .js::before{
-    width: 50%;
-}
-.skills-content .right .php::before{
-    width: 60%;
-}
-.skills-content .right .mysql::before{
-    width: 60%;
-} */
-
-
 
 /* contact section styling */
 .contact .title::after{
@@ -848,7 +607,6 @@ h2.card__title{
     border-radius: 5px;
     transition: 0.5s ease;
 }
-
 .contact .contact-content .row .sub-title:hover{
     color: crimson;
 }
@@ -940,27 +698,168 @@ footer span a:hover{
     text-decoration: underline;
 }
 
-
-
+/* ========================================================================== */
+/* TAMBAHAN KODE UNTUK OPTIMASI FITUR BARU */
 /* ========================================================================== */
 
+/* --- Styling Tombol Beranda --- */
+.hero-buttons {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.home .home-content .btn-main {
+    display: inline-block;
+    background: crimson;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px 30px;
+    font-weight: 500;
+    border-radius: 6px;
+    border: 2px solid crimson;
+    transition: all 0.3s ease;
+    margin-top: 0;
+}
+.home .home-content .btn-main:hover {
+    background: transparent;
+    color: crimson;
+}
+
+/* --- Perbaikan Deskripsi & Posisi Card Data --- */
+.card__description {
+    display: block;
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 25px;
+    line-height: 1.5;
+    text-align: left;
+}
+.card__article.show .card__data {
+    opacity: 1;
+    transform: translateY(-9.5rem); 
+    pointer-events: auto;
+}
+.show-hover:hover .shadow-data {
+    opacity: 1;
+    transform: translateY(-7rem);
+    pointer-events: auto;
+}
+.shadow-data {
+    bottom: -11rem;
+}
+.text-dark {
+    color: crimson !important;
+}
+
+/* --- TOMBOL MUSIK MELAYANG & SLIDER VOLUME --- */
+.music-container {
+    position: fixed;
+    bottom: 80px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1001;
+}
+
+.volume-slider-container {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    margin-bottom: 5px;
+}
+
+.music-container:hover .volume-slider-container {
+    height: 80px; 
+}
+
+.volume-slider {
+    writing-mode: bt-lr; 
+    -webkit-appearance: slider-vertical;
+    width: 8px;
+    height: 70px;
+    cursor: pointer;
+}
+
+.music-btn {
+    background: crimson;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.music-btn:hover {
+    background: #fff;
+    color: crimson;
+}
+.music-btn.playing {
+    animation: pulseMusic 1.5s infinite;
+    background: #fff;
+    color: crimson;
+}
+@keyframes pulseMusic {
+    0% { box-shadow: 0 0 0 0 rgba(220, 20, 60, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(220, 20, 60, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 20, 60, 0); }
+}
+
+/* --- TOOLTIP MUSIK POPUP --- */
+.music-tooltip {
+    position: absolute;
+    right: 70px; 
+    top: 50%;
+    transform: translateY(-50%);
+    background: crimson;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    animation: bounceTooltip 2s infinite;
+}
+
+.music-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -6px;
+    transform: translateY(-50%);
+    border-width: 6px 0 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent transparent crimson;
+}
+
+.music-tooltip.show {
+    opacity: 1;
+}
+
+@keyframes bounceTooltip {
+    0%, 100% { transform: translate(0, -50%); }
+    50% { transform: translate(-10px, -50%); }
+}
 
 
 /* responsive media query start */
 @media (max-width: 1104px) {
-    .about .about-content .left img{
-        height: 350px;
-        width: 350px;
+    .casual-photo{
+        height: 260px;
+        width: 260px;
     }
-    .header__image img:nth-child(1) {
-        max-width: 300px;
-      }
-    
-      .header__image img:nth-child(2) {
-        max-width: 200px;
-      }
 }
-
 @media (max-width: 991px) {
     .max-width{
         padding: 0 50px;
@@ -999,15 +898,23 @@ footer span a:hover{
         margin: 20px 0;
         font-size: 25px;
     }
+    .home .max-width {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+    .home .home-content {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    .hero-visual {
+        width: 100%;
+    }
     .home .home-content .text-2{
         font-size: 70px;
     }
     .home .home-content .text-3{
         font-size: 35px;
-    }
-    .home .home-content a{
-        font-size: 23px;
-        padding: 10px 30px;
     }
     .max-width{
         max-width: 930px;
@@ -1018,7 +925,7 @@ footer span a:hover{
     .about .about-content .left{
         display: flex;
         justify-content: center;
-        margin: 0 auto 60px;
+        margin: 0 auto 40px;
     }
     .about .about-content .right{
         flex: 100%;
@@ -1032,17 +939,10 @@ footer span a:hover{
         width: 100%;
         margin-bottom: 35px;
     }
-
     .navbar .menu{
         padding-left: 0;
     }
-
-    .header__image {
-        min-height: 500px;
-      }
-    
 }
-
 @media (max-width: 690px) {
     .max-width{
         padding: 0 23px;
@@ -1053,17 +953,20 @@ footer span a:hover{
     .home .home-content .text-3{
         font-size: 32px;
     }
-    .home .home-content a{
-        font-size: 20px;
+    .hero-buttons {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    .home .home-content .btn-main {
+        width: fit-content;
     }
     .services .serv-content .card{
         width: 100%;
     }
-
     .navbar .menu{
         padding-left: 0;
     }
-/* --------------------------------- */
     .card__iframe {
         width: 420px;
         height: 328px;
@@ -1072,7 +975,6 @@ footer span a:hover{
         display: block;
         margin: auto;
     }
-
     .card__data {
         width: 400px;
         background-color: white;
@@ -1087,14 +989,12 @@ footer span a:hover{
         opacity: 0;
         transition: opacity 1s 1s;
         z-index: 1000;
-      }
-
-      .card_website_img.video:hover{
+    }
+    .card_website_img.video:hover{
         transform: scale(1.1);
         transition: ease .5s;
         box-shadow: 0 10px 20px rgb(255, 0, 0);
     }
-    
     .card_website_img.website:hover{
         transform: scale(1.1);
         transition: ease .5s;
@@ -1105,11 +1005,7 @@ footer span a:hover{
         transition: ease .5s;
         box-shadow: 0 10px 20px orangered;
     }
-
-/* --------------------------------- */
-
 }
-
 @media (max-width: 500px) {
     .home .home-content .text-2{
         font-size: 50px;
@@ -1139,14 +1035,21 @@ footer span a:hover{
         font-size: 23px;
         line-height: 38px;
     }
-
+    .music-container {
+        right: 15px;
+        bottom: 60px;
+    }
+    .music-tooltip {
+        right: 50px;
+    }
+    .music-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
     .navbar .menu{
         padding-left: 0;
     }
-
-
-
-    /* --------------------------------- */
     .card__iframe {
         width: auto;
         height: 328px;
@@ -1155,7 +1058,6 @@ footer span a:hover{
         display: block;
         margin: auto;
     }
-
     .card__data {
         width: auto;
         background-color: white;
@@ -1170,25 +1072,5 @@ footer span a:hover{
         opacity: 0;
         transition: opacity 1s 1s;
         z-index: 1000;
-      }
-
-      .card_website_img.video:hover{
-        transform: scale(1.1);
-        transition: ease .5s;
-        box-shadow: 0 10px 20px rgb(255, 0, 0);
     }
-    
-    .card_website_img.website:hover{
-        transform: scale(1.1);
-        transition: ease .5s;
-        box-shadow: 0 10px 20px rgba(0, 179, 255, 0.855);
-    }
-    .card.img.desain:hover{
-        transform: scale(1.1);
-        transition: ease .5s;
-        box-shadow: 0 10px 20px orangered;
-    }
-
-/* --------------------------------- */
-    
 }
