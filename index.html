@@ -23,35 +23,48 @@
 </head>
 <body>
     
+    <!-- ELEMEN KURSOR CUSTOM MOUSE -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-outline" id="cursorOutline"></div>
+
     <!-- ELEMEN AUDIO MUSIK LATAR OFFLINE -->
     <audio id="bgMusic" loop>
         <source src="img/audio/background-music.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- TOMBOL MUSIK MELAYANG & PENGATUR VOLUME -->
-    <div class="music-container">
-        <div class="music-tooltip" id="musicTooltip">Mau denger musik? 🎵</div>
-        <div class="volume-slider-container">
-            <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.5" class="volume-slider">
+    <!-- KONTAINER TOMBOL MELAYANG (MUSIK & THEME TOGGLE DI KANAN BAWAH) -->
+    <div class="floating-controls-container">
+        <!-- TOMBOL TOGGLE DARK / LIGHT MODE -->
+        <div class="floating-btn theme-toggle-btn" id="themeToggleBtn" title="Ganti Mode Terang/Gelap">
+            <i class="fas fa-moon" id="themeIcon"></i>
         </div>
-        <div class="music-btn" id="musicBtn" title="Putar/Jeda Musik">
-            <i class="fas fa-volume-mute"></i>
+
+        <!-- TOMBOL MUSIK & SLIDER VOLUME HORIZONTAL -->
+        <div class="music-wrapper">
+            <div class="music-tooltip" id="musicTooltip">Mau denger musik? 🎵</div>
+            <div class="volume-slider-box">
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.5" class="volume-slider">
+            </div>
+            <div class="floating-btn music-btn" id="musicBtn" title="Putar/Jeda Musik">
+                <i class="fas fa-volume-mute"></i>
+            </div>
         </div>
     </div>
 
+    <!-- TOMBOL SCROLL UP DI ATAS KONTROL MUSIK -->
     <div class="scroll-up-btn">
         <i class="fas fa-angle-up"></i>
     </div>
     
-    <!-- Navbar Responsif (Logo Kiri, Menu Kanan) -->
+    <!-- Navbar Responsif -->
     <nav class="navbar">
         <div class="max-width navbar-container">
-            <div class="logo"><a href="#">Portofo<span>lio.</span></a></div>
+            <div class="logo"><a href="#" class="clean-link">Portofo<span>lio.</span></a></div>
             <ul class="menu">
-                <li><a href="#home" class="menu-btn-item">Beranda</a></li>
-                <li><a href="#about" class="menu-btn-item">Tentang Saya</a></li>
-                <li><a href="#services" class="menu-btn-item">Proyek</a></li>
-                <li><a href="#contact" class="menu-btn-item">Kontak</a></li>
+                <li><a href="#home" class="menu-btn-item clean-link">Beranda</a></li>
+                <li><a href="#about" class="menu-btn-item clean-link">Tentang Saya</a></li>
+                <li><a href="#services" class="menu-btn-item clean-link">Proyek</a></li>
+                <li><a href="#contact" class="menu-btn-item clean-link">Kontak</a></li>
             </ul>
             <div class="menu-btn">
                 <i class="fas fa-bars"></i>
@@ -63,12 +76,17 @@
     <section class="home" id="home">
         <div class="max-width align-items-center">
             <div class="home-content">
+                <!-- AVAILABILITY BADGE -->
+                <div class="availability-badge mb-3">
+                    <span class="badge-dot"></span> Open for Freelance & Projects
+                </div>
+                
                 <div class="text-1">Halo, Nama Saya </div>
                 <div class="text-2">Miadi</div>
                 <div class="text-3">Saya seorang <span class="typing"></span></div>
                 
                 <div class="hero-buttons">
-                    <a href="#about" class="btn-main">Selengkapnya..</a>
+                    <a href="#about" class="btn-main clean-link">Selengkapnya..</a>
                 </div>
             </div>
 
@@ -87,22 +105,23 @@
         </div>
     </section>
 
-    <!-- about section start -->
-    <section class="about" id="about">
-        <div class="max-width">
+    <!-- about section start (Slice di Kanan) -->
+    <section class="about section-slice-right" id="about">
+        <div class="spider-bg-slice"></div>
+        <div class="max-width position-relative" style="z-index: 2;">
             <h2 class="title">Tentang Saya</h2>
             <div class="about-content">
                 <div class="column left">
                     <div class="casual-photo-wrapper">
-                        <!-- Cincin Neon Audio Spectrum -->
-                        <div class="neon-audio-ring" id="audioSpectrum"></div>
+                        <!-- Organic Morphing Shape Background -->
+                        <div class="morph-blob" id="morphBlob"></div>
                         <img src="img/MIADI/miadi-style.png" alt="Foto Miadi" class="casual-photo">
                     </div>
                 </div>
                 <div class="column right">
                     <div class="text">Saya Miadi dan Saya adalah <span class="typing-2"></span></div>
                     <p>Lulusan D4 Teknik Multimedia Politeknik Negeri Sambas (IPK 3.86) dan Asisten Dosen mata kuliah Advanced Video Editor. Bersertifikasi kompetensi Video Editor resmi. Berpengalaman sebagai Team Leader, 3D Artist, dan Video Editor dalam berbagai proyek multimedia, iklan komersial UMKM, hingga video edukasi instansi pemerintah (PLN & BKPSDMAD). Menguasai Blender 3D, Adobe After Effects, Premiere Pro, CapCut, Canva, Illustrator, dan Photoshop.</p>
-                    <a href="https://drive.google.com/uc?export=download&id=1yWBp4iTZ5a5N9ryJeIP7ZqMpcRgEtLCQ" target="_blank">
+                    <a href="https://drive.google.com/uc?export=download&id=1yWBp4iTZ5a5N9ryJeIP7ZqMpcRgEtLCQ" target="_blank" class="clean-link">
                         <i class="fas fa-download"></i> Download CV
                     </a>
                 </div>
@@ -110,7 +129,7 @@
         </div>
     </section>
 
-    <!-- services section start -->
+    <!-- services section start (Tanpa Slice, Bersih & Luas) -->
     <section class="services" id="services">
         <div class="max-width">
             <h2 class="title">Proyek Saya</h2>
@@ -160,7 +179,7 @@
                 <div class="col-12 mt-1">
                     <div class="collapse multi-collapse" id="multiCollapseExample1">
                         <div class="card card-body1 p-4 shadow-sm mb-4">
-                            <h3 class="text-white mb-3 border-bottom pb-2 category-heading"><i class='bx bxs-shapes text-danger me-2'></i> Motion Grafik</h3>
+                            <h3 class="mb-3 border-bottom pb-2 category-heading"><i class='bx bxs-shapes text-danger me-2'></i> Motion Grafik</h3>
                             <div class="row row-cols-1 row-cols-md-2 g-4">
                                 <div class="col">
                                     <div class="card h-100 project-card">
@@ -169,7 +188,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Iklan Super Burdas</h2>
                                                 <p class="card__description">Video iklan komersial produk UMKM yang dirancang menggunakan metode MDLC dan teknik kompositing modern.</p>
-                                                <a href="https://youtu.be/q24AsgGFx7E?si=dGJ-excuIYzQsgyW" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/q24AsgGFx7E?autoplay=1" data-title="Iklan Super Burdas"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -181,7 +200,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Animasi 2D | Pencemaran Sungai Sambas</h2>
                                                 <p class="card__description">Proyek animasi 2D untuk penyuluhan lingkungan tentang pencemaran sungai.</p>
-                                                <a href="https://youtu.be/hg7PuGPOqHw?si=oFi289_f1S7P2kqz" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/hg7PuGPOqHw?autoplay=1" data-title="Animasi 2D | Pencemaran Sungai Sambas"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -193,7 +212,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Animasi Tata Cara SwaCAM Berbasis Video Instagram</h2>
                                                 <p class="card__description">Motion graphic edukatif untuk panduan SwaCAM khusus format media sosial.</p>
-                                                <a href="https://youtu.be/MsrkU4va3jI?si=qbEkM9czO94Gm_Hp" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/MsrkU4va3jI?autoplay=1" data-title="Animasi Tata Cara SwaCAM"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -205,7 +224,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Motion Kireina</h2>
                                                 <p class="card__description">Pengembangan animasi motion graphic kreatif untuk Kireina.</p>
-                                                <a href="https://youtu.be/eoJIUKJ4qkU" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/eoJIUKJ4qkU?autoplay=1" data-title="Motion Kireina"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -217,7 +236,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">DISIKAT</h2>
                                                 <p class="card__description">Video animasi edukasi usulan kenaikan pangkat ASN menggunakan metode MDLC.</p>
-                                                <a href="https://youtu.be/y45OvNFy7_8?si=hUhTiSiJazI4w6N7" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/y45OvNFy7_8?autoplay=1" data-title="DISIKAT"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -242,7 +261,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">RUBIPA</h2>
                                                 <p class="card__description">Proyek pengembangan multimedia visual interaktif.</p>
-                                                <a href="https://youtu.be/zt6xthlmgBQ?si=VZ6BNca21ssUqyWn" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/zt6xthlmgBQ?autoplay=1" data-title="RUBIPA"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -256,7 +275,7 @@
                 <div class="col-12 mt-1">
                     <div class="collapse multi-collapse" id="multiCollapseExample2">
                         <div class="card card-body2 p-4 shadow-sm mb-4">
-                            <h3 class="text-white mb-3 border-bottom pb-2 category-heading"><i class='bx bx-cube-alt text-danger me-2'></i> 3D Modelling</h3>
+                            <h3 class="mb-3 border-bottom pb-2 category-heading"><i class='bx bx-cube-alt text-danger me-2'></i> 3D Modelling</h3>
                             <div class="row row-cols-1 row-cols-md-2 g-4">
                                 <div class="col">
                                     <div class="card h-100 project-card">
@@ -265,7 +284,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Animasi 3D Kebun Raya Sambas</h2>
                                                 <p class="card__description">Perancangan aset 3D dan animasi tata ruang Kebun Raya Sambas menggunakan Blender.</p>
-                                                <a href="https://youtu.be/siUQq-mto1M?si=974FhxeW_utoyJbC" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/siUQq-mto1M?autoplay=1" data-title="Animasi 3D Kebun Raya Sambas"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -277,7 +296,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Visualisasi 3D Mesin Pengering Tipe Drum Rotari</h2>
                                                 <p class="card__description">Rendering produk 3D industri menggunakan kombinasi tekstur realistis dan pencahayaan dinamis.</p>
-                                                <a href="https://youtu.be/ciwob9dRyTk?si=2wJHDpc99HZW20eb" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/ciwob9dRyTk?autoplay=1" data-title="Visualisasi 3D Mesin Pengering"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -289,7 +308,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Datok Kullup</h2>
                                                 <p class="card__description">Pengolahan efek visual 3D dan motion graphics untuk judul proyek.</p>
-                                                <a href="https://youtu.be/7obpTuoRoTQ?si=4d0mK5-3EF5f6gpx" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/7obpTuoRoTQ?autoplay=1" data-title="Datok Kullup"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -301,7 +320,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Animasi 3D Tata Surya</h2>
                                                 <p class="card__description">Model 3D benda langit dengan penerapan tekstur luar angkasa dan pergerakan orbit.</p>
-                                                <a href="https://youtu.be/_586xhINRBM" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/_586xhINRBM?autoplay=1" data-title="Animasi 3D Tata Surya"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -313,7 +332,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Animasi 3D Dancing Ball Animation</h2>
                                                 <p class="card__description">Eksplorasi animasi fisika pantulan dan sinkronisasi gerakan (rigging) di Blender.</p>
-                                                <a href="https://youtu.be/xCYUv6hjVT8" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/xCYUv6hjVT8?autoplay=1" data-title="Dancing Ball Animation"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -325,7 +344,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Animasi 3D "Rindu diantara Bangku Kosong"</h2>
                                                 <p class="card__description">Pembuatan set lingkungan 3D sinematik dengan pengaturan lighting dramatis.</p>
-                                                <a href="https://youtu.be/F-a1JQs8hbo?si=GANSGMNAc8oN6Aic" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/F-a1JQs8hbo?autoplay=1" data-title="Rindu diantara Bangku Kosong"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -337,7 +356,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Animasi 3D MARICA</h2>
                                                 <p class="card__description">Pengembangan animasi 3D karakter dan lingkungan simulasi.</p>
-                                                <a href="https://youtu.be/jLsLsdh1Hbc" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/jLsLsdh1Hbc?autoplay=1" data-title="Animasi 3D MARICA"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -349,7 +368,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Lego</h2>
                                                 <p class="card__description">Modelling 3D aset mainan Lego dengan presisi struktur modular.</p>
-                                                <a href="https://youtu.be/FilJkSqvj_U?si=VfUbgns_sEpZMHq5" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/FilJkSqvj_U?autoplay=1" data-title="Lego 3D"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -361,7 +380,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Angry Bird</h2>
                                                 <p class="card__description">Pembuatan karakter 3D adaptasi gim populer dengan tekstur warna kartun.</p>
-                                                <a href="https://youtu.be/rSSloLy6E40?si=MXQ8MmkHnwFdd7Dm" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/rSSloLy6E40?autoplay=1" data-title="Angry Bird 3D"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -373,7 +392,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Teks Prodator</h2>
                                                 <p class="card__description">Desain efek teks 3D dinamis dan motion grafik modern.</p>
-                                                <a href="https://youtu.be/JyRBLCxfXBo?si=nCJQinMBTN68XHLM" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/JyRBLCxfXBo?autoplay=1" data-title="Teks Prodator"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -387,7 +406,7 @@
                 <div class="col-12 mt-1">
                     <div class="collapse multi-collapse" id="multiCollapseExample3">
                         <div class="card card-body3 p-4 shadow-sm mb-4">
-                            <h3 class="text-white mb-3 border-bottom pb-2 category-heading"><i class='bx bx-camera-movie text-danger me-2'></i> Video Editor</h3>
+                            <h3 class="mb-3 border-bottom pb-2 category-heading"><i class='bx bx-camera-movie text-danger me-2'></i> Video Editor</h3>
                             <div class="row row-cols-1 row-cols-md-2 g-4">
                                 <div class="col">
                                     <div class="card h-100 project-card">
@@ -396,7 +415,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">SwaCAM Mudik</h2>
                                                 <p class="card__description">Penyuntingan video edukasi dan informasi layanan PLN UP3 Singkawang.</p>
-                                                <a href="https://youtu.be/yzzvq40rADE?si=EY4tuLkkuDfbP3Am" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/yzzvq40rADE?autoplay=1" data-title="SwaCAM Mudik"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -408,7 +427,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Penyerahan SK dan Pengambilan Sumpah PPPK</h2>
                                                 <p class="card__description">Video dokumentasi resmi kegiatan instansi Pemerintah Kabupaten Sambas.</p>
-                                                <a href="https://youtu.be/wDjFFar12fg?si=0cQQwVg1HQ-9YQkd" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/wDjFFar12fg?autoplay=1" data-title="Penyerahan SK PPPK"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -420,7 +439,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Sosialisasi Website BKPSDMAD</h2>
                                                 <p class="card__description">Penyusunan video sosialisasi platform digital instansi BKPSDMAD.</p>
-                                                <a href="https://youtu.be/7M3Ni2eFfmw?si=DKFwSN-0vQDgBD9a" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/7M3Ni2eFfmw?autoplay=1" data-title="Sosialisasi Website BKPSDMAD"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -432,7 +451,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">MatchCut</h2>
                                                 <p class="card__description">Eksperimen transisi video menggunakan teknik match-cut yang mulus.</p>
-                                                <a href="https://youtube.com/shorts/kRZKk63MZpI?si=bhcq5e31XK2sYgWV" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/kRZKk63MZpI?autoplay=1" data-title="MatchCut"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -444,7 +463,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Jalan Sehat BKPSDMAD</h2>
                                                 <p class="card__description">Dokumentasi highlight acara jalan sehat berdurasi pendek (Shorts).</p>
-                                                <a href="https://youtube.com/shorts/QdSSyWxN5CM?si=4Bbcy7oC_3CKJkg8" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/QdSSyWxN5CM?autoplay=1" data-title="Jalan Sehat BKPSDMAD"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -456,7 +475,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Lomba 17 Agustus 2025 BKPSDMAD</h2>
                                                 <p class="card__description">Penyuntingan video keseruan lomba hari kemerdekaan di instansi.</p>
-                                                <a href="https://youtube.com/shorts/m7o9bsCYUV0?si=cMVL0dTgfuuu6uL5" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/m7o9bsCYUV0?autoplay=1" data-title="Lomba 17 Agustus"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -468,7 +487,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">SwaCAM 1</h2>
                                                 <p class="card__description">Seri konten publikasi SwaCAM format video vertikal bagian 1.</p>
-                                                <a href="https://youtube.com/shorts/nUkLfrOzCSU?si=gf_ROIxZt0IPmFbZ" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/nUkLfrOzCSU?autoplay=1" data-title="SwaCAM 1"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -480,7 +499,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">SwaCAM 2</h2>
                                                 <p class="card__description">Seri konten publikasi SwaCAM format video vertikal bagian 2.</p>
-                                                <a href="https://youtube.com/shorts/N2KbBK9foVo?si=Ze3MjOuXa7FGwT6P" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/N2KbBK9foVo?autoplay=1" data-title="SwaCAM 2"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -492,7 +511,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">SwaCAM 3</h2>
                                                 <p class="card__description">Seri konten publikasi SwaCAM format video vertikal bagian 3.</p>
-                                                <a href="https://youtube.com/shorts/yYyg-YZN6e4?si=yctQsChe3sEfC2Ih" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/yYyg-YZN6e4?autoplay=1" data-title="SwaCAM 3"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -504,7 +523,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">SwaCAM 4</h2>
                                                 <p class="card__description">Seri konten publikasi SwaCAM format video vertikal bagian 4.</p>
-                                                <a href="https://youtube.com/shorts/4hkmzeUkg3E?si=-PvWG4S61tN79kid" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/4hkmzeUkg3E?autoplay=1" data-title="SwaCAM 4"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -516,7 +535,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">SwaCAM 5</h2>
                                                 <p class="card__description">Seri konten publikasi SwaCAM format video vertikal bagian 5.</p>
-                                                <a href="https://youtube.com/shorts/NT2WTYq7Wqk?si=t-lPzyA_Bppt35DM" target="_blank" class="card__button">Lihat</a>
+                                                <a href="#" class="card__button btn-video-modal clean-link" data-src="https://www.youtube.com/embed/NT2WTYq7Wqk?autoplay=1" data-title="SwaCAM 5"><i class="fas fa-play-circle me-1"></i> Putar Video</a>
                                             </div>
                                         </article>
                                     </div>
@@ -528,7 +547,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Rahasia Buku Tua</h2>
                                                 <p class="card__description">Penyuntingan video film fiksi pendek dengan color grading dramatis.</p>
-                                                <a href="https://youtu.be/W3ik7_9vt18" target="_blank" class="card__button">Lihat</a>
+                                                <a href="https://youtu.be/W3ik7_9vt18" target="_blank" class="card__button clean-link"><i class="fas fa-external-link-alt me-1"></i> Lihat</a>
                                             </div>
                                         </article>
                                     </div>
@@ -540,7 +559,7 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">TOXIC</h2>
                                                 <p class="card__description">Video iklan layanan masyarakat edukatif.</p>
-                                                <a href="https://youtu.be/NIaRHy4E2HA" target="_blank" class="card__button">Lihat</a>
+                                                <a href="https://youtu.be/NIaRHy4E2HA" target="_blank" class="card__button clean-link"><i class="fas fa-external-link-alt me-1"></i> Lihat</a>
                                             </div>
                                         </article>
                                     </div>
@@ -554,7 +573,7 @@
                 <div class="col-12 mt-1">
                     <div class="collapse multi-collapse" id="multiCollapseExample4">
                         <div class="card card-body4 p-4 shadow-sm mb-4">
-                            <h3 class="text-white mb-3 border-bottom pb-2 category-heading"><i class='fas fa-code text-danger me-2'></i> Web Design</h3>
+                            <h3 class="mb-3 border-bottom pb-2 category-heading"><i class='fas fa-code text-danger me-2'></i> Web Design</h3>
                             <div class="row row-cols-1 row-cols-md-2 g-4">
                                 <div class="col">
                                     <div class="card h-100 project-card">
@@ -563,8 +582,8 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Desain UI Login Page</h2>
                                                 <p class="card__description">Desain antarmuka halaman login yang modern dan responsif untuk platform tokosambas.com.</p>
-                                                <a href="#" class="card__button btn-lightbox" data-img="img/website/w4.png" data-title="Desain UI Login Page" data-desc="Desain antarmuka halaman login yang modern dan responsif untuk platform tokosambas.com.">
-                                                    <i class="fas fa-search-plus"></i> Perbesar
+                                                <a href="#" class="card__button btn-lightbox clean-link" data-img="img/website/w4.png" data-title="Desain UI Login Page" data-desc="Desain antarmuka halaman login yang modern dan responsif untuk platform tokosambas.com.">
+                                                    <i class="fas fa-search-plus me-1"></i> Perbesar
                                                 </a>
                                             </div>
                                         </article>
@@ -577,8 +596,8 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Clonning Website Lazada</h2>
                                                 <p class="card__description">Pembuatan ulang (cloning) desain antarmuka e-commerce Lazada menggunakan kode HTML & CSS.</p>
-                                                <a href="#" class="card__button btn-lightbox" data-img="img/website/w2.png" data-title="Clonning Website Lazada" data-desc="Pembuatan ulang (cloning) desain antarmuka e-commerce Lazada menggunakan kode HTML & CSS.">
-                                                    <i class="fas fa-search-plus"></i> Perbesar
+                                                <a href="#" class="card__button btn-lightbox clean-link" data-img="img/website/w2.png" data-title="Clonning Website Lazada" data-desc="Pembuatan ulang (cloning) desain antarmuka e-commerce Lazada menggunakan kode HTML & CSS.">
+                                                    <i class="fas fa-search-plus me-1"></i> Perbesar
                                                 </a>
                                             </div>
                                         </article>
@@ -593,7 +612,7 @@
                 <div class="col-12 mt-1">
                     <div class="collapse multi-collapse" id="multiCollapseExample5">
                         <div class="card card-body5 p-4 shadow-sm mb-4">
-                            <h3 class="text-white mb-3 border-bottom pb-2 category-heading"><i class='fas fa-paint-brush text-danger me-2'></i> Desain Grafis</h3>
+                            <h3 class="mb-3 border-bottom pb-2 category-heading"><i class='fas fa-paint-brush text-danger me-2'></i> Desain Grafis</h3>
                             <div class="row row-cols-1 row-cols-md-2 g-4">
                                 <div class="col">
                                     <div class="card h-100 project-card">
@@ -602,8 +621,8 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Poster Sambal Cobek Bakar</h2>
                                                 <p class="card__description">Perancangan materi visual promosi untuk produk kuliner UMKM lokal.</p>
-                                                <a href="#" class="card__button btn-lightbox" data-img="img/desain/d2.png" data-title="Poster UMKM Sambal Cobek Bakar" data-desc="Perancangan materi visual promosi untuk produk kuliner UMKM lokal.">
-                                                    <i class="fas fa-search-plus"></i> Perbesar
+                                                <a href="#" class="card__button btn-lightbox clean-link" data-img="img/desain/d2.png" data-title="Poster UMKM Sambal Cobek Bakar" data-desc="Perancangan materi visual promosi untuk produk kuliner UMKM lokal.">
+                                                    <i class="fas fa-search-plus me-1"></i> Perbesar
                                                 </a>
                                             </div>
                                         </article>
@@ -616,8 +635,8 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Label Madu Kelulut</h2>
                                                 <p class="card__description">Desain kemasan dan label untuk botol produk UMKM Madu Kelulut.</p>
-                                                <a href="#" class="card__button btn-lightbox" data-img="img/desain/d6.jpeg" data-title="Label UMKM Madu Kelulut" data-desc="Desain kemasan dan label untuk botol produk UMKM Madu Kelulut.">
-                                                    <i class="fas fa-search-plus"></i> Perbesar
+                                                <a href="#" class="card__button btn-lightbox clean-link" data-img="img/desain/d6.jpeg" data-title="Label UMKM Madu Kelulut" data-desc="Desain kemasan dan label untuk botol produk UMKM Madu Kelulut.">
+                                                    <i class="fas fa-search-plus me-1"></i> Perbesar
                                                 </a>
                                             </div>
                                         </article>
@@ -630,8 +649,8 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Desain Aplikasi Tani Prima</h2>
                                                 <p class="card__description">Perancangan grafis aset visual untuk program Tani Prima dari PLN.</p>
-                                                <a href="#" class="card__button btn-lightbox" data-img="img/desain/Tani-Prima-Desain.png" data-title="Desain Aplikasi Tani Prima PLN" data-desc="Perancangan grafis aset visual untuk program Tani Prima dari PLN.">
-                                                    <i class="fas fa-search-plus"></i> Perbesar
+                                                <a href="#" class="card__button btn-lightbox clean-link" data-img="img/desain/Tani-Prima-Desain.png" data-title="Desain Aplikasi Tani Prima PLN" data-desc="Perancangan grafis aset visual untuk program Tani Prima dari PLN.">
+                                                    <i class="fas fa-search-plus me-1"></i> Perbesar
                                                 </a>
                                             </div>
                                         </article>
@@ -644,8 +663,8 @@
                                             <div class="card__data">
                                                 <h2 class="card__title">Logo Tani Prima PLN</h2>
                                                 <p class="card__description">Desain identitas logo resmi untuk program Tani Prima Instansi PLN UP3 Singkawang.</p>
-                                                <a href="#" class="card__button btn-lightbox" data-img="img/desain/Logo-Tani-Prima.jpeg" data-title="Logo Tani Prima PLN UP3 Singkawang" data-desc="Desain identitas logo resmi untuk program Tani Prima Instansi PLN UP3 Singkawang.">
-                                                    <i class="fas fa-search-plus"></i> Perbesar
+                                                <a href="#" class="card__button btn-lightbox clean-link" data-img="img/desain/Logo-Tani-Prima.jpeg" data-title="Logo Tani Prima PLN UP3 Singkawang" data-desc="Desain identitas logo resmi untuk program Tani Prima Instansi PLN UP3 Singkawang.">
+                                                    <i class="fas fa-search-plus me-1"></i> Perbesar
                                                 </a>
                                             </div>
                                         </article>
@@ -660,78 +679,79 @@
         </div>
     </section>
 
-<!-- contact section start -->
-<section class="contact" id="contact">
-    <div class="max-width">
-        <h2 class="title">Kontak Saya</h2>
-        <div class="contact-content">
-            <div class="column left">
-                <div class="text">Get in Touch</div>
-                <p>Berikan umpan balik atau diskusikan proyek bersama saya melalui informasi di bawah ini..</p>
-                <div class="contact-info-cards">
-                    <div class="info-card-item">
-                        <div class="icon-box"><i class="fas fa-user"></i></div>
-                        <div class="info">
-                            <div class="head">Nama</div>
-                            <div class="sub-title">Miadi</div>
+    <!-- contact section start (Slice di Kiri - Selang Seling dengan Tentang Saya) -->
+    <section class="contact section-slice-left" id="contact">
+        <div class="spider-bg-slice"></div>
+        <div class="max-width position-relative" style="z-index: 2;">
+            <h2 class="title">Kontak Saya</h2>
+            <div class="contact-content">
+                <div class="column left">
+                    <div class="text">Get in Touch</div>
+                    <p>Berikan umpan balik atau diskusikan proyek bersama saya melalui informasi di bawah ini..</p>
+                    <div class="contact-info-cards">
+                        <div class="info-card-item">
+                            <div class="icon-box"><i class="fas fa-user"></i></div>
+                            <div class="info">
+                                <div class="head">Nama</div>
+                                <div class="sub-title">Miadi</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="info-card-item" onclick="window.open('https://wa.me/6285942803540?text=Halo%20Miadi,%20saya%20tertarik%20dengan%20portofolio%20Anda.', '_blank');" style="cursor: pointer;">
-                        <div class="icon-box whatsapp-bg"><i class='bx bxl-whatsapp'></i></div>
-                        <div class="info">
-                            <div class="head">WhatsApp / Telepon</div>
-                            <div class="sub-title">+62 859-4280-3540 (Klik untuk Chat)</div>
+                        <div class="info-card-item" onclick="window.open('https://wa.me/6285942803540?text=Halo%20Miadi,%20saya%20tertarik%20dengan%20portofolio%20Anda.', '_blank');" style="cursor: pointer;">
+                            <div class="icon-box whatsapp-bg"><i class='bx bxl-whatsapp'></i></div>
+                            <div class="info">
+                                <div class="head">WhatsApp / Telepon</div>
+                                <div class="sub-title">+62 859-4280-3540 (Klik untuk Chat)</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="info-card-item" onclick="window.location.href='mailto:miadi0618@gmail.com?subject=Subjek%20Pesan&body=Isi%20Pesan%20Anda';">
-                        <div class="icon-box"><i class="fas fa-envelope"></i></div>
-                        <div class="info">
-                            <div class="head">Email</div>
-                            <div class="sub-title">miadi0618@gmail.com</div>
+                        <div class="info-card-item" onclick="window.location.href='mailto:miadi0618@gmail.com?subject=Subjek%20Pesan&body=Isi%20Pesan%20Anda';">
+                            <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                            <div class="info">
+                                <div class="head">Email</div>
+                                <div class="sub-title">miadi0618@gmail.com</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="info-card-item" onclick="window.location.href='https://maps.app.goo.gl/vZv94PPFDSzTx4Ua9';">
-                        <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="info">
-                            <div class="head">Alamat</div>
-                            <div class="sub-title">Sekuduk, Sejangkung, Sambas, Kalbar</div>
+                        <div class="info-card-item" onclick="window.location.href='https://maps.app.goo.gl/vZv94PPFDSzTx4Ua9';">
+                            <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="info">
+                                <div class="head">Alamat</div>
+                                <div class="sub-title">Sekuduk, Sejangkung, Sambas, Kalbar</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="column right">
-                <div class="text">Kirim Pesan Cepat</div>
-                <form action="https://formspree.io/f/xgejzkay" method="post" class="contact-form-box">
-                    <div class="fields">
-                        <div class="field name">
-                            <input type="text" placeholder="Nama Anda" required name="name" id="name">
+                <div class="column right">
+                    <div class="text">Kirim Pesan Cepat</div>
+                    <form action="https://formspree.io/f/xgejzkay" method="post" class="contact-form-box">
+                        <div class="fields">
+                            <div class="field name">
+                                <input type="text" placeholder="Nama Anda" required name="name" id="name">
+                            </div>
+                            <div class="field email">
+                                <input type="email" placeholder="Email Anda" required name="email" id="email">
+                            </div>
                         </div>
-                        <div class="field email">
-                            <input type="email" placeholder="Email Anda" required name="email" id="email">
+                        <div class="field">
+                            <input type="text" placeholder="Judul Pesan" required name="Subject" id="Subject">
                         </div>
-                    </div>
-                    <div class="field">
-                        <input type="text" placeholder="Judul Pesan" required name="Subject" id="Subject">
-                    </div>
-                    <div class="field textarea">
-                        <textarea cols="30" rows="6" placeholder="Tuliskan pesan Anda di sini..." required name="message" id="message"></textarea>
-                    </div>
-                    <div class="button-area">
-                        <button type="submit"><i class="fas fa-paper-plane me-2"></i> Kirim Pesan</button>
-                    </div>
-                </form>
+                        <div class="field textarea">
+                            <textarea cols="30" rows="6" placeholder="Tuliskan pesan Anda di sini..." required name="message" id="message"></textarea>
+                        </div>
+                        <div class="button-area">
+                            <button type="submit"><i class="fas fa-paper-plane me-2"></i> Kirim Pesan</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- footer section start -->
     <footer>
-        <span>Created By <a href="">Miadi</a> | <span class="far fa-copyright"></span> 2026 All rights reserved.</span>
+        <span>Created By <a href="" class="clean-link">Miadi</a> | <span class="far fa-copyright"></span> 2026 All rights reserved.</span>
     </footer>
 
-    <!-- MODAL POP-UP LIGHTBOX GALERI -->
+    <!-- MODAL POP-UP LIGHTBOX GALERI GAMBAR -->
     <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content bg-dark text-white border-0 shadow-lg">
@@ -742,6 +762,23 @@
                 <div class="modal-body text-center p-4">
                     <img src="" id="lightboxImg" class="img-fluid rounded mb-3 shadow-sm" alt="Karya">
                     <p id="lightboxDesc" class="mb-0 text-light" style="font-size:0.95rem;"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL POP-UP VIDEO PLAYER YOUTUBE LANGSUNG -->
+    <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-dark text-white border-0 shadow-lg">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold text-danger" id="videoModalTitle">Pemutaran Video</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-3">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="" id="videoModalIframe" title="Video Preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
         </div>
