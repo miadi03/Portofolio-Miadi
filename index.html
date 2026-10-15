@@ -43,7 +43,7 @@
         <i class="fas fa-angle-up"></i>
     </div>
     
-    <!-- Navbar Responsif -->
+    <!-- Navbar Responsif (Logo Kiri, Menu Kanan) -->
     <nav class="navbar">
         <div class="max-width navbar-container">
             <div class="logo"><a href="#">Portofo<span>lio.</span></a></div>
@@ -660,71 +660,71 @@
         </div>
     </section>
 
-    <!-- contact section start -->
-    <section class="contact" id="contact">
-        <div class="max-width">
-            <h2 class="title">Kontak Saya</h2>
-            <div class="contact-content">
-                <div class="column left">
-                    <div class="text">Get in Touch</div>
-                    <p>Berikan umpan balik kepada saya..</p>
-                    <div class="icons">
-                        <div class="row">
-                            <i class="fas fa-user"></i>
-                            <div class="info">
-                                <div class="head">Nama</div>
-                                <div class="sub-title">Miadi</div>
-                            </div>
+<!-- contact section start -->
+<section class="contact" id="contact">
+    <div class="max-width">
+        <h2 class="title">Kontak Saya</h2>
+        <div class="contact-content">
+            <div class="column left">
+                <div class="text">Get in Touch</div>
+                <p>Berikan umpan balik atau diskusikan proyek bersama saya melalui informasi di bawah ini..</p>
+                <div class="contact-info-cards">
+                    <div class="info-card-item">
+                        <div class="icon-box"><i class="fas fa-user"></i></div>
+                        <div class="info">
+                            <div class="head">Nama</div>
+                            <div class="sub-title">Miadi</div>
                         </div>
-                        <div class="row" onclick="window.location.href='https://bit.ly/3UehojF';">
-                            <i class='bx bxs-phone'></i>
-                            <div class="info">
-                                <div class="head">Telepon</div>
-                                <div class="sub-title">085942803540</div>
-                            </div>
+                    </div>
+                    <div class="info-card-item" onclick="window.open('https://wa.me/6285942803540?text=Halo%20Miadi,%20saya%20tertarik%20dengan%20portofolio%20Anda.', '_blank');" style="cursor: pointer;">
+                        <div class="icon-box whatsapp-bg"><i class='bx bxl-whatsapp'></i></div>
+                        <div class="info">
+                            <div class="head">WhatsApp / Telepon</div>
+                            <div class="sub-title">+62 859-4280-3540 (Klik untuk Chat)</div>
                         </div>
-                        <div class="row" onclick="window.location.href='mailto:miadi0618@gmail.com?subject=Subjek%20Pesan&body=Isi%20Pesan%20Anda';">
-                            <i class="fas fa-envelope"></i>
-                            <div class="info">
-                                <div class="head">Email</div>
-                                <div class="sub-title">miadi0618@gmail.com</div>
-                            </div>
+                    </div>
+                    <div class="info-card-item" onclick="window.location.href='mailto:miadi0618@gmail.com?subject=Subjek%20Pesan&body=Isi%20Pesan%20Anda';">
+                        <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                        <div class="info">
+                            <div class="head">Email</div>
+                            <div class="sub-title">miadi0618@gmail.com</div>
                         </div>
-                        <div class="row" onclick="window.location.href='https://maps.app.goo.gl/vZv94PPFDSzTx4Ua9';">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="info">
-                                <div class="head">Alamat</div>
-                                <div class="sub-title">Sekuduk, Sejangkung, Sambas, Kalbar, Indonesia</div>
-                            </div>
+                    </div>
+                    <div class="info-card-item" onclick="window.location.href='https://maps.app.goo.gl/vZv94PPFDSzTx4Ua9';">
+                        <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="info">
+                            <div class="head">Alamat</div>
+                            <div class="sub-title">Sekuduk, Sejangkung, Sambas, Kalbar</div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="column right">
-                    <div class="text">Hubungi Saya</div>
-                    <form action="https://formspree.io/f/xgejzkay" method="post">
-                        <div class="fields">
-                            <div class="field name">
-                                <input type="text" placeholder="Nama" required name="name" id="name">
-                            </div>
-                            <div class="field email">
-                                <input type="email" placeholder="Email" required name="email" id="email">
-                            </div>
+            <div class="column right">
+                <div class="text">Kirim Pesan Cepat</div>
+                <form action="https://formspree.io/f/xgejzkay" method="post" class="contact-form-box">
+                    <div class="fields">
+                        <div class="field name">
+                            <input type="text" placeholder="Nama Anda" required name="name" id="name">
                         </div>
-                        <div class="field">
-                            <input type="text" placeholder="Judul" required name="Subject" id="Subject">
+                        <div class="field email">
+                            <input type="email" placeholder="Email Anda" required name="email" id="email">
                         </div>
-                        <div class="field textarea">
-                            <textarea cols="30" rows="10" placeholder="Pesan.." required name="message" id="message"></textarea>
-                        </div>
-                        <div class="button-area">
-                            <button type="submit">kirim pesan</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="field">
+                        <input type="text" placeholder="Judul Pesan" required name="Subject" id="Subject">
+                    </div>
+                    <div class="field textarea">
+                        <textarea cols="30" rows="6" placeholder="Tuliskan pesan Anda di sini..." required name="message" id="message"></textarea>
+                    </div>
+                    <div class="button-area">
+                        <button type="submit"><i class="fas fa-paper-plane me-2"></i> Kirim Pesan</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- footer section start -->
     <footer>

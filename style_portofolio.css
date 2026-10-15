@@ -64,31 +64,33 @@ section .title::after{
     transform: translateX(-50%);
 }
 
-/* Navbar & Responsivitas Mobile */
+/* Navbar Diperbaiki (Logo Kiri, Menu Kanan Persis) */
 .navbar{
     position: fixed !important;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 9999;
-    padding: 25px 0;
+    padding: 22px 0;
     font-family: 'Ubuntu', sans-serif;
     transition: all 0.3s ease;
-    background: transparent;
+    background: rgba(15, 15, 15, 0.85);
+    backdrop-filter: blur(8px);
 }
 .navbar.sticky{
-    padding: 15px 0;
+    padding: 12px 0;
     background: crimson;
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 .navbar-container{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100%;
 }
 .navbar .logo a{
     color: #fff;
-    font-size: 35px;
+    font-size: 32px;
     font-weight: 600;
 }
 .navbar .logo a span{
@@ -100,8 +102,9 @@ section .title::after{
 }
 .navbar .menu{
     display: flex;
-    gap: 25px;
+    gap: 30px;
     margin-bottom: 0;
+    padding-left: 0;
 }
 .navbar .menu li{
     list-style: none;
@@ -109,7 +112,7 @@ section .title::after{
 .navbar .menu li a{
     display: block;
     color: #fff !important;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 500;
     transition: color 0.3s ease;
 }
@@ -165,8 +168,8 @@ section .title::after{
 }
 .home .home-content { width: 50%; }
 .home .home-content .text-1 { font-size: 27px; }
-.home .home-content .text-2 { font-size: 75px; font-weight: 600; margin: 5px 0; }
-.home .home-content .text-3 { font-size: 40px; margin-bottom: 25px; }
+.home .home-content .text-2 { font-size: 70px; font-weight: 600; margin: 5px 0; }
+.home .home-content .text-3 { font-size: 38px; margin-bottom: 25px; }
 .home .home-content .text-3 span { color: crimson; font-weight: 500; }
 .btn-main {
     display: inline-block;
@@ -323,7 +326,7 @@ section .title::after{
 }
 .btn-tutup { background: linear-gradient(135deg, #333, #222); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
 
-/* Desain Kartu Proyek Warna-Warni & Menarik */
+/* Desain Kartu Proyek */
 .card-body1 { background: linear-gradient(145deg, #251619, #1a1a1a) !important; border: 2px solid #ff4d6d !important; border-radius: 15px !important; }
 .card-body2 { background: linear-gradient(145deg, #16222a, #1a1a1a) !important; border: 2px solid #00bfff !important; border-radius: 15px !important; }
 .card-body3 { background: linear-gradient(145deg, #221c16, #1a1a1a) !important; border: 2px solid #ffa500 !important; border-radius: 15px !important; }
@@ -371,49 +374,104 @@ section .title::after{
 }
 .card__button:hover { background: #b3002d; color: #fff; }
 
-/* Contact Section */
-.contact{ background: #fff; color: #222; }
-.contact .title::after{ content: "Miadi"; background: #fff; }
+/* Contact Section Baru Yang Jauh Lebih Menarik & Rapi */
+.contact{ background: #f9f9f9; color: #222; }
+.contact .title::after{ content: "Miadi"; background: #f9f9f9; }
 .contact .contact-content .column{ width: calc(50% - 30px); }
-.contact .contact-content .text{ font-size: 22px; font-weight: 600; margin-bottom: 15px; }
-.contact .contact-content .row{
+.contact .contact-content .text{ font-size: 24px; font-weight: 600; margin-bottom: 12px; color: #222; }
+.contact .contact-content p { color: #666; margin-bottom: 25px; line-height: 1.6; }
+
+.contact-info-cards {
     display: flex;
-    height: 60px;
-    align-items: center;
-    cursor: pointer;
-    padding: 0 10px;
-    transition: 0.3s ease;
+    flex-direction: column;
+    gap: 15px;
 }
-.contact .contact-content .row:hover{ color: #fff; background: #555; border-radius: 5px; }
-.contact .contact-content .row .info{ margin-left: 20px; }
-.contact .contact-content .row i{ font-size: 22px; color: crimson; }
+.info-card-item {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eaeaea;
+    transition: all 0.3s ease;
+}
+.info-card-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(220, 20, 60, 0.15);
+    border-color: crimson;
+}
+.info-card-item .icon-box {
+    width: 45px;
+    height: 45px;
+    background: rgba(220, 20, 60, 0.1);
+    color: crimson;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    margin-right: 18px;
+    flex-shrink: 0;
+}
+.info-card-item .icon-box.whatsapp-bg {
+    background: rgba(37, 211, 102, 0.15);
+    color: #25d366;
+}
+.info-card-item .info .head {
+    font-size: 13px;
+    color: #888;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.info-card-item .info .sub-title {
+    font-size: 15px;
+    color: #333;
+    font-weight: 600;
+}
+
+.contact-form-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    border: 1px solid #eaeaea;
+}
 .contact .right form .fields{ display: flex; gap: 15px; }
-.contact .right form .field, .contact .right form .textarea{ width: 100%; margin-bottom: 15px; }
+.contact .right form .field, .contact .right form .textarea{ width: 100%; margin-bottom: 18px; }
 .contact .right form .field input, .contact .right form .textarea textarea{
     width: 100%;
-    border: 1px solid lightgrey;
-    border-radius: 6px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     outline: none;
-    padding: 12px 15px;
-    font-size: 16px;
+    padding: 12px 18px;
+    font-size: 15px;
     font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+    transition: border-color 0.3s;
+}
+.contact .right form .field input:focus, .contact .right form .textarea textarea:focus {
+    border-color: crimson;
+    background: #fff;
 }
 .contact .right form .textarea textarea{ resize: none; }
 .right form .button-area button{
     color: #fff;
-    width: 160px;
-    height: 45px;
-    font-size: 17px;
-    font-weight: 500;
-    border-radius: 6px;
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
     cursor: pointer;
     background: crimson;
-    border: 2px solid crimson;
+    border: none;
+    box-shadow: 0 5px 15px rgba(220, 20, 60, 0.3);
     transition: all 0.3s ease;
 }
-.right form .button-area button:hover{ color: crimson; background: none; }
+.right form .button-area button:hover{ background: #b3002d; transform: translateY(-2px); }
 
-footer{ background: #111; padding: 20px; color: #fff; text-align: center; }
+footer{ background: #111; padding: 25px; color: #fff; text-align: center; }
 footer span a{ color: crimson; }
 
 /* Music Player & Floating Icons */
@@ -457,7 +515,7 @@ footer span a{ color: crimson; }
 
 /* Responsif Mobile untuk Navbar & Layout */
 @media (max-width: 991px){
-    .max-width{ padding: 0 40px; }
+    .max-width{ padding: 0 30px; }
     .home .home-content { width: 100%; margin-bottom: 40px; }
     .hero-visual { width: 100%; }
     .about .about-content .column{ width: 100%; margin-bottom: 30px; }
