@@ -802,23 +802,15 @@ footer span a{ color: crimson; text-decoration: none !important; }
     .navbar .menu li a{ font-size: 22px; }
 }
 
-/* ANIMASI SCROLL IN / OUT SECTION YANG AMAN TANPA GLITCH PUTIH */
+/* STABILITAS SECTION AMAN BEBAS GLITCH PUTIH */
 section {
     position: relative;
     padding: 100px 0px;
     background-color: var(--bg-color);
 }
 
-/* Bagian konten di dalam section yang diberi efek transisi halus */
 section .max-width, 
 section .serv-content {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-section.section-visible .max-width,
-section.section-visible .serv-content {
     opacity: 1;
     transform: translateY(0);
 }

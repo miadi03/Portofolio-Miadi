@@ -43,16 +43,82 @@ $(document).ready(function () {
         }, 600);
     }
 
+    // WEB AUDIO API UNTUK EFEK SUARA MIKRO (SFX) DENGAN VOLUME YANG JELAS
+    let audioCtx = null;
+    let sfxEnabled = true;
+
+    function initAudioContext() {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
+    // Suara hover dengan gain yang lebih tinggi
+    function playHoverSFX() {
+        if (!sfxEnabled) return;
+        initAudioContext();
+        try {
+            let osc = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(500, audioCtx.currentTime + 0.05);
+            
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime); // Dinaikkan agar jelas
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.05);
+        } catch(e) {
+            console.log("Audio Context error:", e);
+        }
+    }
+
+    // Suara klik dengan gain yang lebih tinggi
+    function playClickSFX() {
+        if (!sfxEnabled) return;
+        initAudioContext();
+        try {
+            let osc = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(450, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.1);
+            
+            gain.gain.setValueAtTime(0.5, audioCtx.currentTime); // Dinaikkan agar jelas
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.1);
+        } catch(e) {
+            console.log("Audio Context error:", e);
+        }
+    }
+
     $(document).on("mouseenter", "a, button, .card, input, textarea, .floating-btn", function () {
         cursorDot.style.transform = "translate(-50%, -50%) scale(2.2)";
         cursorOutline.style.transform = "translate(-50%, -50%) scale(1.6)";
         cursorOutline.style.borderColor = "#ffcc00";
+        playHoverSFX();
     });
 
     $(document).on("mouseleave", "a, button, .card, input, textarea, .floating-btn", function () {
         cursorDot.style.transform = "translate(-50%, -50%) scale(1)";
         cursorOutline.style.transform = "translate(-50%, -50%) scale(1)";
         cursorOutline.style.borderColor = "rgba(220, 20, 60, 0.5)";
+    });
+
+    $(document).on("click", "a, button, .card, input, textarea, .floating-btn", function () {
+        playClickSFX();
     });
 
     $(window).scroll(function () {
@@ -68,7 +134,6 @@ $(document).ready(function () {
             $('.scroll-up-btn').removeClass("show");
         }
 
-        // Trigger Motion Slide Animasi Slice pada section Tentang & Kontak saat di-scroll
         $('.section-slice-right, .section-slice-left').each(function () {
             var topPos = $(this).offset().top - window.innerHeight / 1.3;
             if (window.scrollY > topPos) {
@@ -77,11 +142,11 @@ $(document).ready(function () {
         });
     });
 
-    // INTERSECTION OBSERVER UNTUK ANIMASI KONTEN SECTION
+    // INTERSECTION OBSERVER YANG AMAN UNTUK SEMUA KONTEN SECTION
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.1
+        threshold: 0.05
     };
 
     const sectionObserver = new IntersectionObserver(function (entries, observer) {
@@ -89,17 +154,10 @@ $(document).ready(function () {
             const target = $(entry.target);
             if (entry.isIntersecting) {
                 target.addClass('section-visible').removeClass('section-hidden');
-            } else {
-                if (entry.boundingClientRect.top < 0) {
-                    target.addClass('section-hidden').removeClass('section-visible');
-                } else {
-                    target.removeClass('section-visible section-hidden');
-                }
             }
         });
     }, observerOptions);
 
-    // Terapkan observer ke semua section kecuali home
     $('section:not(#home)').each(function () {
         sectionObserver.observe(this);
     });
@@ -148,7 +206,7 @@ $(document).ready(function () {
         });
     }
 
-    // Kategori Proyek: Membuka kategori secara eksklusif
+    // Kategori Proyek & Tombol Lihat/Tutup
     $('.card-filter').click(function () {
         var targetCollapse = $(this).attr('data-target');
         
@@ -363,6 +421,7 @@ $(document).ready(function () {
             $(this).find('i').removeClass('fa-music').addClass('fa-volume-mute');
             morphBlob.removeClass('active');
             updateAboutPhoto(false);
+            sfxEnabled = false;
         } else {
             if (bgMusic) bgMusic.play();
             isPlaying = true;
@@ -371,6 +430,7 @@ $(document).ready(function () {
             morphBlob.addClass('active');
             updateAboutPhoto(true);
             tampilkanIkonSoftware(); 
+            sfxEnabled = true;
         }
     });
 });
