@@ -1,4 +1,3 @@
-/*  import google fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
 
 *{
@@ -11,35 +10,24 @@ html{
     scroll-behavior: smooth;
 }
 
-/* custom scroll bar */
-::-webkit-scrollbar {
-    width: 10px;
-}
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-::-webkit-scrollbar-thumb {
-    background: #888;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #888; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
 
-/* all similar content styling codes */
 section{
     padding: 100px 0px;
 }
 .max-width{
     max-width: 1300px;
-    padding: 0px 80px ;
+    padding: 0px 80px;
     margin: auto;
 }
-.about, .services, .skills, .teams, .contact, footer{
+.about, .services, .contact, footer{
     font-family: 'Poppins', sans-serif;
 }
 .about .about-content,
 .services .serv-content,
-.skills .skills-content,
 .contact .contact-content{
     display: flex;
     flex-wrap: wrap;
@@ -76,70 +64,61 @@ section .title::after{
     transform: translateX(-50%);
 }
 
-/* navbar styling */
+/* Navbar & Responsivitas Mobile */
 .navbar{
     position: fixed !important;
-    width: 100% ;
-    z-index: 1002 ;
-    padding: 30px 30px ;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    padding: 25px 0;
     font-family: 'Ubuntu', sans-serif;
     transition: all 0.3s ease;
+    background: transparent;
 }
 .navbar.sticky{
-    padding: 15px 30px ;
+    padding: 15px 0;
     background: crimson;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
-.navbar .max-width1{
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    text-decoration: none ;
-}
-.navbar .logo{
-    text-decoration: none ;
+.navbar-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .navbar .logo a{
-    color: #fff ;
+    color: #fff;
     font-size: 35px;
     font-weight: 600;
-    text-decoration: none;
 }
 .navbar .logo a span{
-    color: crimson ;
+    color: crimson;
     transition: all 0.3s ease;
 }
 .navbar.sticky .logo a span{
     color: yellow !important;
 }
-
 .navbar .menu{
-    padding-left: 500px;
+    display: flex;
+    gap: 25px;
+    margin-bottom: 0;
 }
 .navbar .menu li{
     list-style: none;
-    display: inline-block;
-    margin-left: 25px;
 }
 .navbar .menu li a{
     display: block;
     color: #fff !important;
     font-size: 18px;
     font-weight: 500;
-    margin-left: 25px;
     transition: color 0.3s ease;
-    text-decoration: none;
 }
-.navbar .menu li a:hover{
-    color: crimson !important;
-}
-.navbar.sticky .menu li a:hover{
-    color: yellow !important;
-}
+.navbar .menu li a:hover{ color: crimson !important; }
+.navbar.sticky .menu li a:hover{ color: yellow !important; }
 
-/* menu btn styling */
 .menu-btn{
     color: #fff;
-    font-size: 23px;
+    font-size: 25px;
     cursor: pointer;
     display: none;
 }
@@ -149,31 +128,27 @@ section .title::after{
     width: 42px;
     background: crimson;
     right: 30px;
-    bottom: 10px;
+    bottom: 30px;
     text-align: center;
     line-height: 45px;
     color: #fff;
     z-index: 1001;
     font-size: 30px;
     border-radius: 6px;
-    border-bottom-width: 2px;
     cursor: pointer;
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
 }
 .scroll-up-btn.show{
-    bottom: 30px;
     opacity: 1;
     pointer-events: auto;
 }
-.scroll-up-btn:hover{
-    filter: brightness(90%);
-}
 
-/* home section styling */
+/* Home Section */
 .home{
     display: flex;
+    align-items: center;
     background: url("img/MIADI/bg.jpg") no-repeat center;
     height: 100vh;
     color: #fff;
@@ -183,35 +158,27 @@ section .title::after{
     font-family: 'Ubuntu', sans-serif;
 }
 .home .max-width {
-  width: 100%;
-  display: flex;
-  align-items: center; 
-  justify-content: space-between; 
+    width: 100%;
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
 }
-.home .max-width .row{
-  margin-right: 0;
+.home .home-content { width: 50%; }
+.home .home-content .text-1 { font-size: 27px; }
+.home .home-content .text-2 { font-size: 75px; font-weight: 600; margin: 5px 0; }
+.home .home-content .text-3 { font-size: 40px; margin-bottom: 25px; }
+.home .home-content .text-3 span { color: crimson; font-weight: 500; }
+.btn-main {
+    display: inline-block;
+    background: crimson;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 30px;
+    border-radius: 6px;
+    transition: 0.3s;
 }
-.home .home-content {
-    width: 50%;
-}
-.home .home-content .text-1{
-    font-size: 27px;
-}
-.home .home-content .text-2{
-    font-size: 75px;
-    font-weight: 600;
-    margin-left: -3px;
-}
-.home .home-content .text-3{
-    font-size: 40px;
-    margin: 5px 0;
-}
-.home .home-content .text-3 span{
-    color: crimson;
-    font-weight: 500;
-}
+.btn-main:hover { background: #b3002d; color: #fff; }
 
-/* HERO VISUAL (BAGIAN KANAN: IKON SOFTWARE MELAYANG) */
 .hero-visual {
     position: relative;
     width: 45%;
@@ -237,10 +204,7 @@ section .title::after{
     visibility: hidden;
     transition: transform 0.1s linear, opacity 1s ease-in-out;
 }
-.float-icon.tampil {
-    opacity: 1;
-    visibility: visible;
-}
+.float-icon.tampil { opacity: 1; visibility: visible; }
 .icon-blender { width: 90px; height: 90px; }
 .icon-ae { width: 75px; height: 75px; }
 .icon-pr { width: 70px; height: 70px; }
@@ -249,21 +213,15 @@ section .title::after{
 .icon-canva { width: 55px; height: 55px; }
 .icon-capcut { width: 60px; height: 60px; }
 
-/* ========================================================================== */
-/* FOTO CASUAL LINGKARAN & CINCIN AUDIO SPECTRUM NEON ENERGIK */
-/* ========================================================================== */
-.about .title::after{
-    content: "Miadi";
-}
-.about .about-content .left{
-    width: 45%;
-    display: flex;
-    justify-content: center;
-}
+/* About Section & Cincin Neon Audio Spectrum */
+.about{ background: #fff; }
+.about .title::after{ content: "Miadi"; background: #fff; }
+.about .about-content .column{ width: 48%; }
 .casual-photo-wrapper {
     position: relative;
     width: 340px;
     height: 340px;
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -278,50 +236,76 @@ section .title::after{
     background: #111;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
-
-/* EFEK AUDIO SPECTRUM CINCIN NEON MELINGKAR YANG ENERGIK */
 .neon-audio-ring {
     position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
+    top: -10px; left: -10px; right: -10px; bottom: -10px;
     border-radius: 50%;
     border: 4px solid rgba(220, 20, 60, 0.3);
     z-index: 1;
     opacity: 0;
     transition: all 0.4s ease;
 }
-
-/* Saat Musik Aktif: Berputar cepat dan berdenyut kuat mengikuti beat */
 .neon-audio-ring.active {
     opacity: 1;
     border-color: #ff1a40;
     box-shadow: 0 0 20px crimson, 0 0 40px rgba(220, 20, 60, 0.8), inset 0 0 20px crimson;
     animation: rotateRing 3s linear infinite, energicBeatBounce 0.6s ease-in-out infinite alternate;
 }
-
 @keyframes rotateRing {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-
 @keyframes energicBeatBounce {
     0% { transform: scale(0.98); box-shadow: 0 0 15px crimson, inset 0 0 10px crimson; }
     100% { transform: scale(1.06); box-shadow: 0 0 35px #ff4d6d, 0 0 60px rgba(255, 77, 109, 0.9), inset 0 0 30px #ff4d6d; }
 }
 
-/* ========================================================================== */
-/* STYLING TOMBOL "LIHAT SEMUA" YANG STYLISH & INTERAKTIF */
-/* ========================================================================== */
-.project-toggle-wrapper {
-    margin-top: -20px;
-    margin-bottom: 30px;
+.about .about-content .right .text{ font-size: 25px; font-weight: 600; margin-bottom: 15px; color: #222; }
+.about .about-content .right .text span{ color: crimson; }
+.about .about-content .right p{ text-align: justify; color: #444; line-height: 1.6; }
+.about .about-content .right a{
+    display: inline-block;
+    background: crimson;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px 30px;
+    margin-top: 20px;
+    border-radius: 6px;
+    border: 2px solid crimson;
+    transition: all 0.3s ease;
 }
-.btn-custom-action {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+.about .about-content .right a:hover{ color: crimson; background: none; }
+
+/* Services / Projects */
+.services{ color: #fff; background: #111; }
+.services .title::before{ background: #fff; }
+.services .title::after{ background: #111; content: "Miadi"; }
+.services .serv-content{
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+.services .serv-content .card{
+    flex: 1;
+    background: #1e1e1e;
+    text-align: center;
+    border-radius: 10px;
+    padding: 35px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #333;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.services .serv-content .card:hover{ background: crimson; border-color: crimson; transform: translateY(-5px); }
+.services .serv-content .card i{ font-size: 45px; color: crimson; transition: color 0.3s ease; }
+.services .serv-content .card:hover i{ color: #fff; }
+.services .serv-content .card .text{ font-size: 17px; font-weight: 600; margin-top: 12px; }
+
+/* Tombol Aksi */
+.btn-lihat, .btn-tutup {
+    display: inline-block;
     background: linear-gradient(135deg, crimson, #b3002d);
     color: #fff;
     font-size: 18px;
@@ -331,428 +315,108 @@ section .title::after{
     border: none;
     box-shadow: 0 8px 20px rgba(220, 20, 60, 0.4);
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
 }
-.btn-custom-action:hover {
+.btn-lihat:hover, .btn-tutup:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 12px 25px rgba(220, 20, 60, 0.6);
-    background: linear-gradient(135deg, #ff1a40, crimson);
-    color: #fff;
 }
-.btn-tutup {
-    background: linear-gradient(135deg, #f39c12, #d68910);
-    box-shadow: 0 8px 20px rgba(243, 156, 18, 0.4);
-}
-.btn-tutup:hover {
-    box-shadow: 0 12px 25px rgba(243, 156, 18, 0.6);
-    background: linear-gradient(135deg, #f5b041, #f39c12);
-}
+.btn-tutup { background: linear-gradient(135deg, #333, #222); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
 
-/* ========================================================================== */
-/* ANIMASI SCROLL DUA ARAH (FADE IN / FADE OUT) */
-/* ========================================================================== */
-.scroll-reveal {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-.scroll-reveal.revealed {
-    opacity: 1;
-    transform: translateY(0);
-}
+/* Desain Kartu Proyek Warna-Warni & Menarik */
+.card-body1 { background: linear-gradient(145deg, #251619, #1a1a1a) !important; border: 2px solid #ff4d6d !important; border-radius: 15px !important; }
+.card-body2 { background: linear-gradient(145deg, #16222a, #1a1a1a) !important; border: 2px solid #00bfff !important; border-radius: 15px !important; }
+.card-body3 { background: linear-gradient(145deg, #221c16, #1a1a1a) !important; border: 2px solid #ffa500 !important; border-radius: 15px !important; }
+.card-body4 { background: linear-gradient(145deg, #16251b, #1a1a1a) !important; border: 2px solid #2ecc71 !important; border-radius: 15px !important; }
+.card-body5 { background: linear-gradient(145deg, #221625, #1a1a1a) !important; border: 2px solid #9b59b6 !important; border-radius: 15px !important; }
 
-.about .about-content .right{
-    width: 55%;
-}
-.about .about-content .right .text{
-    font-size: 25px;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-.about .about-content .right .text span{
-    color: crimson;
-}
-.about .about-content .right p{
-    text-align: justify;
-}
-.about .about-content .right a{
-    display: inline-block;
-    background: crimson;
-    color: #fff;
-    font-size: 20px;
-    font-weight: 500;
-    padding: 10px 30px;
-    margin-top: 20px;
-    border-radius: 6px;
-    border: 2px solid crimson;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-.about .about-content .right a:hover{
-    color: crimson;
-    background: none;
-    text-decoration: none;
-}
+.category-heading { font-weight: 600; font-size: 1.5rem; letter-spacing: 0.5px; }
 
-/* services section styling/      PROYEK      */
-.services, .teams{
-    color:#fff;
-    background: #111;
-}
-.services .title::before,
-.teams .title::before{
-    background: #fff;
-}
-.services .title::after,
-.teams .title::after{
-    background: #111;
-    content: "Miadi";
-}
-.services .serv-content .card{
-    width: calc(20% - 10px);
-    background: #222;
-    text-align: center;
-    border-radius: 6px;
-    padding: 50px 5px;
-    cursor: pointer;
+.project-card {
+    background: #252525 !important;
+    border: 1px solid #383838 !important;
+    border-radius: 12px !important;
     transition: all 0.3s ease;
 }
-.services .serv-content .card:hover{
-    background: crimson;
-}
-.services .serv-content .card .box{
-    transition: all 0.3s ease;
-}
-.services .serv-content .card:hover .box{
-    transform: scale(1.05);
-}
-.services .serv-content .card i{
-    font-size: 50px;
-    color: crimson;
-    transition: color 0.3s ease;
-}
-.services .serv-content .card:hover i{
-    color: #fff;
-}
-.services .serv-content .card .text{
-    font-size: 25px;
-    font-weight: 500;
-    margin: 10px 0 7px 0;
-}
-
-.card.img{
-    max-width: 350px; 
-    margin: 0 auto;
-}
-.card_website_img{
-    max-width: 500px; 
-    margin: 0 auto;
-}
-
-.card_website_img.video:hover{
-    transform: scale(1.2);
-    transition: ease .5s;
-    box-shadow: 0 10px 20px rgb(255, 0, 0);
-}
-.card_website_img.website:hover{
-    transform: scale(1.2);
-    transition: ease .5s;
-    box-shadow: 0 10px 20px rgba(0, 179, 255, 0.855);
-}
-.card.img.desain:hover{
-    transform: scale(1.2);
-    transition: ease .5s;
-    box-shadow: 0 10px 20px orangered;
-}
-
-h2.card__title.video{
-    font-size: 25px;
-    background-color: rgba(227, 30, 30, 0.907);
-    color: white;
-    text-align: center;
-    padding: 2px;
-    border-radius: 5px;
-}
-h2.card__title.website{
-    font-size: 25px;
-    background-color: rgba(0, 179, 255, 0.855);
-    color: white;
-    text-align: center;
-    padding: 2px;
-    border-radius: 5px;
-}
-h2.card__title.desain{
-    font-size: 25px;
-    background-color: orangered;
-    color: white;
-    text-align: center;
-    padding: 2px;
-    border-radius: 5px;
-}
-
-.card__iframe {
-    width: 500px;
-    height: 328px;
-    border-radius: 1.5rem;
-    overflow: hidden;
-    display: block;
-}
-
-.card-img {
-    width: 100%; 
-    height: auto; 
-    border-radius: 1.5rem; 
-    display: block; 
-    object-fit: cover; 
-}
-
-.row.row-cols-1.row-cols-md-2.g-4 .card{
-    background: transparent !important;
-}
-
-h2.card__title{
-    z-index: 1000;
-}
-
-.card.card-body1, .card.card-body2, .card.card-body3, .card.card-body4, .card.card-body5{
-    background-color: transparent;
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(220, 20, 60, 0.2);
 }
 
 .card__article {
     position: relative;
-    overflow: hidden;
-}
-.card__data {
-    width: 500px;
-    background-color: white;
-    padding: 1.5rem 1.5rem;
-    box-shadow: 0 8px 24px hsla(0, 0%, 0%, .15);
+    background: #222;
     border-radius: 1rem;
-    position: absolute;
-    bottom: -9rem;
-    left: 0;
-    right: 0;
-    margin-inline: auto;
-    opacity: 0;
-    transition: opacity 1s 1s;
-    z-index: 1000;
+    padding: 12px;
 }
+.card-img { width: 100%; border-radius: 0.8rem; object-fit: cover; height: 210px; }
+.card__iframe { width: 100%; height: 210px; border-radius: 0.8rem; border: none; }
+.card__data { background-color: #fff; padding: 1.2rem; border-radius: 0.8rem; margin-top: 12px; color: #333; }
 .card__title {
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: maroon;
-    margin-bottom: 20px;
-    cursor: pointer;
-}
-.card__button {
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 500;
-    color: white;
-    background-color: crimson;
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-.card__button:hover {
-    background: none;
-    color: #e71247;
-    outline: 2px solid crimson;
-}
-span.toko{
-    color: yellow;
-}
-
-/* Card default state */
-.card__article .card__data {
-    opacity: 0;
-    transform: translateY(0);
-    transition: opacity 0.5s ease, transform 0.8s ease;
-    pointer-events: none;
-}
-.card__article.show {
-    overflow: initial;
-}
-.card__article:not(.show) {
-    overflow: hidden;
-}
-
-/* contact section styling */
-.contact .title::after{
-    content: "Miadi";
-}
-.contact .contact-content .column{
-    width: calc(50% - 30px);
-}
-.contact .contact-content .text{
-    font-size: 20px;
+    font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    color: #111;
 }
-.contact .contact-content .left p{
-    text-align: justify;
+.card__description { display: block; font-size: 0.88rem; color: #555; line-height: 1.4; margin-bottom: 12px; }
+.card__button {
+    display: inline-block;
+    background: crimson;
+    color: #fff;
+    padding: 6px 18px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: 0.3s;
 }
-.contact .contact-content .left .icons{
-    margin: 10px 0 !important;
-}
+.card__button:hover { background: #b3002d; color: #fff; }
+
+/* Contact Section */
+.contact{ background: #fff; color: #222; }
+.contact .title::after{ content: "Miadi"; background: #fff; }
+.contact .contact-content .column{ width: calc(50% - 30px); }
+.contact .contact-content .text{ font-size: 22px; font-weight: 600; margin-bottom: 15px; }
 .contact .contact-content .row{
     display: flex;
-    height: 65px;
+    height: 60px;
     align-items: center;
     cursor: pointer;
+    padding: 0 10px;
+    transition: 0.3s ease;
 }
-.contact .contact-content .row:hover{
-    color: #fff;
-    background: #888787;
-    border-radius: 5px;
-    transition: 0.5s ease;
-}
-.contact .contact-content .row .sub-title:hover{
-    color: crimson;
-}
-.contact .contact-content .row .info{
-    margin-left: 30px;
-    margin-top: -50px;
-}
-.contact .contact-content .row i{
-    font-size: 25px;
-    color: crimson;
-}
-.contact .contact-content .info .head{
-    font-weight: 500;
-}
-.contact .contact-content .info .sub-title{
-    color: #333;
-}
-.contact .right form .fields{
-    display: flex;
-}
-.contact .right form .field,
-.contact .right form .fields .field{
-    height: 45px;
-    width: 100%;
-    margin-bottom: 15px;
-}
-.contact .right form .textarea{
-    height: 80px;
-    width: 100%;
-}
-.contact .right form .name{
-    margin-right: 10px;
-}
-.contact .right form .field input,
-.contact .right form .textarea textarea{
-    height: 100%;
+.contact .contact-content .row:hover{ color: #fff; background: #555; border-radius: 5px; }
+.contact .contact-content .row .info{ margin-left: 20px; }
+.contact .contact-content .row i{ font-size: 22px; color: crimson; }
+.contact .right form .fields{ display: flex; gap: 15px; }
+.contact .right form .field, .contact .right form .textarea{ width: 100%; margin-bottom: 15px; }
+.contact .right form .field input, .contact .right form .textarea textarea{
     width: 100%;
     border: 1px solid lightgrey;
     border-radius: 6px;
     outline: none;
-    padding: 0 15px;
-    font-size: 17px;
+    padding: 12px 15px;
+    font-size: 16px;
     font-family: 'Poppins', sans-serif;
-    transition: all 0.3s ease;
 }
-.contact .right form .field input:focus,
-.contact .right form .textarea textarea:focus{
-    border-color: #b3b3b3;
-}
-.contact .right form .textarea textarea{
-  padding-top: 10px;
-  resize: none;
-}
-.contact .right form .button-area{
-  display: flex;
-  align-items: center;
-}
+.contact .right form .textarea textarea{ resize: none; }
 .right form .button-area button{
-  color: #fff;
-  display: block;
-  width: 160px!important;
-  height: 45px;
-  outline: none;
-  font-size: 18px;
-  font-weight: 500;
-  border-radius: 6px;
-  cursor: pointer;
-  flex-wrap: nowrap;
-  background: crimson;
-  border: 2px solid crimson;
-  transition: all 0.3s ease;
-}
-.right form .button-area button:hover{
-  color: crimson;
-  background: none;
-}
-/* footer section styling */
-footer{
-    background: #111;
-    padding: 15px 23px;
     color: #fff;
-    text-align: center;
-}
-footer span a{
-    color: crimson;
-    text-decoration: none;
-}
-footer span a:hover{
-    text-decoration: underline;
-}
-
-/* ========================================================================== */
-/* TAMBAHAN KODE UNTUK OPTIMASI FITUR BARU */
-/* ========================================================================== */
-
-/* --- Styling Tombol Beranda --- */
-.hero-buttons {
-    margin-top: 25px;
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-.home .home-content .btn-main {
-    display: inline-block;
-    background: crimson;
-    color: #fff;
-    font-size: 20px;
-    padding: 10px 30px;
+    width: 160px;
+    height: 45px;
+    font-size: 17px;
     font-weight: 500;
     border-radius: 6px;
+    cursor: pointer;
+    background: crimson;
     border: 2px solid crimson;
     transition: all 0.3s ease;
-    margin-top: 0;
 }
-.home .home-content .btn-main:hover {
-    background: transparent;
-    color: crimson;
-}
+.right form .button-area button:hover{ color: crimson; background: none; }
 
-/* --- Perbaikan Deskripsi & Posisi Card Data --- */
-.card__description {
-    display: block;
-    font-size: 0.95rem;
-    color: #444;
-    margin-bottom: 25px;
-    line-height: 1.5;
-    text-align: left;
-}
-.card__article.show .card__data {
-    opacity: 1;
-    transform: translateY(-9.5rem); 
-    pointer-events: auto;
-}
-.show-hover:hover .shadow-data {
-    opacity: 1;
-    transform: translateY(-7rem);
-    pointer-events: auto;
-}
-.shadow-data {
-    bottom: -11rem;
-}
-.text-dark {
-    color: crimson !important;
-}
+footer{ background: #111; padding: 20px; color: #fff; text-align: center; }
+footer span a{ color: crimson; }
 
-/* --- TOMBOL MUSIK MELAYANG & SLIDER VOLUME --- */
+/* Music Player & Floating Icons */
 .music-container {
     position: fixed;
     bottom: 80px;
@@ -762,120 +426,46 @@ footer span a:hover{
     align-items: center;
     z-index: 1001;
 }
-
-.volume-slider-container {
-    height: 0;
-    overflow: hidden;
-    transition: height 0.3s ease;
-    margin-bottom: 5px;
-}
-
-.music-container:hover .volume-slider-container {
-    height: 80px; 
-}
-
-.volume-slider {
-    writing-mode: bt-lr; 
-    -webkit-appearance: slider-vertical;
-    width: 8px;
-    height: 70px;
-    cursor: pointer;
-}
-
+.volume-slider-container { height: 0; overflow: hidden; transition: height 0.3s ease; margin-bottom: 5px; }
+.music-container:hover .volume-slider-container { height: 80px; }
+.volume-slider { width: 8px; height: 70px; cursor: pointer; }
 .music-btn {
-    background: crimson;
-    color: #fff;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    background: crimson; color: #fff;
+    width: 50px; height: 50px; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 20px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     transition: 0.3s;
 }
-
-.music-btn:hover {
-    background: #fff;
-    color: crimson;
-}
-.music-btn.playing {
-    animation: pulseMusic 1.5s infinite;
-    background: #fff;
-    color: crimson;
-}
+.music-btn.playing { background: #fff; color: crimson; animation: pulseMusic 1.5s infinite; }
 @keyframes pulseMusic {
     0% { box-shadow: 0 0 0 0 rgba(220, 20, 60, 0.7); }
     70% { box-shadow: 0 0 0 15px rgba(220, 20, 60, 0); }
     100% { box-shadow: 0 0 0 0 rgba(220, 20, 60, 0); }
 }
 
-/* --- TOOLTIP MUSIK POPUP --- */
 .music-tooltip {
-    position: absolute;
-    right: 70px; 
-    top: 50%;
-    transform: translateY(-50%);
-    background: crimson;
-    color: #fff;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 500;
-    white-space: nowrap;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
-    animation: bounceTooltip 2s infinite;
+    position: absolute; right: 70px; top: 50%; transform: translateY(-50%);
+    background: crimson; color: #fff; padding: 8px 15px; border-radius: 20px;
+    font-size: 14px; font-weight: 500; white-space: nowrap; opacity: 0; pointer-events: none;
+    transition: opacity 0.5s ease; animation: bounceTooltip 2s infinite;
 }
-
-.music-tooltip::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: -6px;
-    transform: translateY(-50%);
-    border-width: 6px 0 6px 6px;
-    border-style: solid;
-    border-color: transparent transparent transparent crimson;
-}
-
-.music-tooltip.show {
-    opacity: 1;
-}
-
+.music-tooltip.show { opacity: 1; }
 @keyframes bounceTooltip {
     0%, 100% { transform: translate(0, -50%); }
     50% { transform: translate(-10px, -50%); }
 }
 
-
-/* responsive media query start */
-@media (max-width: 1104px) {
-    .casual-photo{
-        height: 260px;
-        width: 260px;
-    }
-}
-@media (max-width: 991px) {
-    .max-width{
-        padding: 0 50px;
-    }
-    .skills{
-        height: auto;
-    }
-}
-@media (max-width: 947px){
-    .menu-btn{
-        display: block;
-        z-index: 999;
-    }
-    .menu-btn i.active:before{
-        content: "\f00d";
-    }
+/* Responsif Mobile untuk Navbar & Layout */
+@media (max-width: 991px){
+    .max-width{ padding: 0 40px; }
+    .home .home-content { width: 100%; margin-bottom: 40px; }
+    .hero-visual { width: 100%; }
+    .about .about-content .column{ width: 100%; margin-bottom: 30px; }
+    .services .serv-content{ flex-wrap: wrap; justify-content: center; }
+    .services .serv-content .card{ width: 45%; flex: none; margin-bottom: 15px; }
+    .contact .contact-content .column{ width: 100%; margin-bottom: 35px; }
+    
+    .menu-btn{ display: block; z-index: 1003; }
     .navbar .menu{
         position: fixed;
         height: 100vh;
@@ -883,194 +473,13 @@ footer span a:hover{
         left: -100%;
         top: 0;
         background: #111;
-        text-align: center;
-        padding-top: 80px;
-        transition: all 0.3s ease;
-    }
-    .navbar .menu.active{
-        left: 0;
-    }
-    .navbar .menu li{
-        display: block;
-    }
-    .navbar .menu li a{
-        display: inline-block;
-        margin: 20px 0;
-        font-size: 25px;
-    }
-    .home .max-width {
         flex-direction: column;
         justify-content: center;
-        text-align: center;
-    }
-    .home .home-content {
-        width: 100%;
-        margin-bottom: 40px;
-    }
-    .hero-visual {
-        width: 100%;
-    }
-    .home .home-content .text-2{
-        font-size: 70px;
-    }
-    .home .home-content .text-3{
-        font-size: 35px;
-    }
-    .max-width{
-        max-width: 930px;
-    }
-    .about .about-content .column{
-        width: 100%;
-    }
-    .about .about-content .left{
-        display: flex;
-        justify-content: center;
-        margin: 0 auto 40px;
-    }
-    .about .about-content .right{
-        flex: 100%;
-    }
-    .services .serv-content .card{
-        width: calc(50% - 10px);
-        margin-bottom: 20px;
-    }
-    .skills .skills-content .column,
-    .contact .contact-content .column{
-        width: 100%;
-        margin-bottom: 35px;
-    }
-    .navbar .menu{
-        padding-left: 0;
-    }
-}
-@media (max-width: 690px) {
-    .max-width{
-        padding: 0 23px;
-    }
-    .home .home-content .text-2{
-        font-size: 60px;
-    }
-    .home .home-content .text-3{
-        font-size: 32px;
-    }
-    .hero-buttons {
-        flex-direction: column;
-        gap: 10px;
         align-items: center;
+        transition: all 0.3s ease;
+        z-index: 1002;
     }
-    .home .home-content .btn-main {
-        width: fit-content;
-    }
-    .services .serv-content .card{
-        width: 100%;
-    }
-    .navbar .menu{
-        padding-left: 0;
-    }
-    .card__iframe {
-        width: 420px;
-        height: 328px;
-        border-radius: 1.5rem;
-        overflow: hidden;
-        display: block;
-        margin: auto;
-    }
-    .card__data {
-        width: 400px;
-        background-color: white;
-        padding: 1.5rem 1.5rem;
-        box-shadow: 0 8px 24px hsla(0, 0%, 0%, .15);
-        border-radius: 1rem;
-        position: absolute;
-        bottom: -9rem;
-        left: 0;
-        right: 0;
-        margin-inline: auto;
-        opacity: 0;
-        transition: opacity 1s 1s;
-        z-index: 1000;
-    }
-    .card_website_img.video:hover{
-        transform: scale(1.1);
-        transition: ease .5s;
-        box-shadow: 0 10px 20px rgb(255, 0, 0);
-    }
-    .card_website_img.website:hover{
-        transform: scale(1.1);
-        transition: ease .5s;
-        box-shadow: 0 10px 20px rgba(0, 179, 255, 0.855);
-    }
-    .card.img.desain:hover{
-        transform: scale(1.1);
-        transition: ease .5s;
-        box-shadow: 0 10px 20px orangered;
-    }
-}
-@media (max-width: 500px) {
-    .home .home-content .text-2{
-        font-size: 50px;
-    }
-    .home .home-content .text-3{
-        font-size: 27px;
-    }
-    .about .about-content .right .text,
-    .skills .skills-content .left .text{
-        font-size: 19px;
-    }
-    .contact .right form .fields{
-        flex-direction: column;
-    }
-    .contact .right form .name,
-    .contact .right form .email{
-        margin: 0;
-    }
-    .right form .error-box{
-       width: 150px;
-    }
-    .scroll-up-btn{
-        right: 15px;
-        bottom: 15px;
-        height: 38px;
-        width: 35px;
-        font-size: 23px;
-        line-height: 38px;
-    }
-    .music-container {
-        right: 15px;
-        bottom: 60px;
-    }
-    .music-tooltip {
-        right: 50px;
-    }
-    .music-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-    }
-    .navbar .menu{
-        padding-left: 0;
-    }
-    .card__iframe {
-        width: auto;
-        height: 328px;
-        border-radius: 1.5rem;
-        overflow: hidden;
-        display: block;
-        margin: auto;
-    }
-    .card__data {
-        width: auto;
-        background-color: white;
-        padding: 1.5rem 1.5rem;
-        box-shadow: 0 8px 24px hsla(0, 0%, 0%, .15);
-        border-radius: 1rem;
-        position: absolute;
-        bottom: -9rem;
-        left: 0;
-        right: 0;
-        margin-inline: auto;
-        opacity: 0;
-        transition: opacity 1s 1s;
-        z-index: 1000;
-    }
+    .navbar .menu.active{ left: 0; }
+    .navbar .menu li{ margin: 15px 0; }
+    .navbar .menu li a{ font-size: 22px; }
 }
