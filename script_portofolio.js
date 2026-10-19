@@ -1,46 +1,53 @@
 $(document).ready(function () {
-    // CUSTOM MOUSE CURSOR & TRAILING PARTICLES LOGIC
+    // CUSTOM MOUSE CURSOR & TRAILING PARTICLES LOGIC (Hanya aktif di desktop > 768px)
     const cursorDot = document.querySelector("#cursorDot");
     const cursorOutline = document.querySelector("#cursorOutline");
     let mouseX = 0, mouseY = 0;
     let outlineX = 0, outlineY = 0;
+    const isDesktop = window.innerWidth > 768;
 
-    window.addEventListener("mousemove", function (e) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
+    if (isDesktop && cursorDot && cursorOutline) {
+        window.addEventListener("mousemove", function (e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
 
-        cursorDot.style.left = `${mouseX}px`;
-        cursorDot.style.top = `${mouseY}px`;
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
 
-        if (Math.random() < 0.3) {
-            createParticle(mouseX, mouseY);
+            if (Math.random() < 0.3) {
+                createParticle(mouseX, mouseY);
+            }
+        });
+
+        function animateOutline() {
+            let distX = mouseX - outlineX;
+            let distY = mouseY - outlineY;
+
+            outlineX += distX * 0.2;
+            outlineY += distY * 0.2;
+
+            cursorOutline.style.left = `${outlineX}px`;
+            cursorOutline.style.top = `${outlineY}px`;
+
+            requestAnimationFrame(animateOutline);
         }
-    });
+        animateOutline();
 
-    function animateOutline() {
-        let distX = mouseX - outlineX;
-        let distY = mouseY - outlineY;
+        function createParticle(x, y) {
+            const particle = document.createElement("div");
+            particle.className = "cursor-particle";
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            document.body.appendChild(particle);
 
-        outlineX += distX * 0.2;
-        outlineY += distY * 0.2;
-
-        cursorOutline.style.left = `${outlineX}px`;
-        cursorOutline.style.top = `${outlineY}px`;
-
-        requestAnimationFrame(animateOutline);
-    }
-    animateOutline();
-
-    function createParticle(x, y) {
-        const particle = document.createElement("div");
-        particle.className = "cursor-particle";
-        particle.style.left = `${x}px`;
-        particle.style.top = `${y}px`;
-        document.body.appendChild(particle);
-
-        setTimeout(() => {
-            particle.remove();
-        }, 600);
+            setTimeout(() => {
+                particle.remove();
+            }, 600);
+        }
+    } else {
+        // Sembunyikan elemen kustom cursor di mobile
+        if (cursorDot) cursorDot.style.display = 'none';
+        if (cursorOutline) cursorOutline.style.display = 'none';
     }
 
     // WEB AUDIO API UNTUK EFEK SUARA MIKRO (SFX) DENGAN VOLUME YANG JELAS
@@ -67,7 +74,7 @@ $(document).ready(function () {
             osc.frequency.setValueAtTime(800, audioCtx.currentTime);
             osc.frequency.exponentialRampToValueAtTime(500, audioCtx.currentTime + 0.05);
             
-            gain.gain.setValueAtTime(0.3, audioCtx.currentTime); // Dinaikkan agar jelas
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
             
             osc.connect(gain);
@@ -91,7 +98,7 @@ $(document).ready(function () {
             osc.frequency.setValueAtTime(450, audioCtx.currentTime);
             osc.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.1);
             
-            gain.gain.setValueAtTime(0.5, audioCtx.currentTime); // Dinaikkan agar jelas
+            gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
             
             osc.connect(gain);
@@ -105,16 +112,20 @@ $(document).ready(function () {
     }
 
     $(document).on("mouseenter", "a, button, .card, input, textarea, .floating-btn", function () {
-        cursorDot.style.transform = "translate(-50%, -50%) scale(2.2)";
-        cursorOutline.style.transform = "translate(-50%, -50%) scale(1.6)";
-        cursorOutline.style.borderColor = "#ffcc00";
+        if (isDesktop && cursorDot && cursorOutline) {
+            cursorDot.style.transform = "translate(-50%, -50%) scale(2.2)";
+            cursorOutline.style.transform = "translate(-50%, -50%) scale(1.6)";
+            cursorOutline.style.borderColor = "#ffcc00";
+        }
         playHoverSFX();
     });
 
     $(document).on("mouseleave", "a, button, .card, input, textarea, .floating-btn", function () {
-        cursorDot.style.transform = "translate(-50%, -50%) scale(1)";
-        cursorOutline.style.transform = "translate(-50%, -50%) scale(1)";
-        cursorOutline.style.borderColor = "rgba(220, 20, 60, 0.5)";
+        if (isDesktop && cursorDot && cursorOutline) {
+            cursorDot.style.transform = "translate(-50%, -50%) scale(1)";
+            cursorOutline.style.transform = "translate(-50%, -50%) scale(1)";
+            cursorOutline.style.borderColor = "rgba(220, 20, 60, 0.5)";
+        }
     });
 
     $(document).on("click", "a, button, .card, input, textarea, .floating-btn", function () {
@@ -206,21 +217,33 @@ $(document).ready(function () {
         });
     }
 
-    // Kategori Proyek & Tombol Lihat/Tutup
+    // Kategori Proyek: Eksklusif (menutup kategori lain saat pindah) & Sinkronisasi Tombol
     $('.card-filter').click(function () {
         var targetCollapse = $(this).attr('data-target');
         
+        // Tutup semua kategori lain terlebih dahulu agar tidak menumpuk, lalu toggle target yang diklik
         $('.multi-collapse').not(targetCollapse).collapse('hide');$(targetCollapse).collapse('toggle');
 
-        $('.btn-lihat').addClass('d-none');$('.btn-tutup').removeClass('d-none');
+        // Cek status setelah jeda singkat untuk mengubah tombol Lihat/Tutup Semua secara sinkron
+        setTimeout(function() {
+            var anyVisible = $('.multi-collapse.show').length > 0;
+            
+            if (anyVisible) {
+                $('.btn-lihat').addClass('d-none');$('.btn-tutup').removeClass('d-none');
+            } else {
+                $('.btn-tutup').addClass('d-none');$('.btn-lihat').removeClass('d-none');
+            }
+        }, 200);
 
         $('html, body').animate({ scrollTop:$(targetCollapse).offset().top - 100 }, 400);
     });
 
+    // Tombol Lihat Semua Proyek
     $('.btn-lihat').click(function () {$(this).addClass('d-none');
         $('.multi-collapse').collapse('show');$('.btn-tutup').removeClass('d-none');
     });
 
+    // Tombol Tutup Semua Proyek
     $('.btn-tutup').click(function () {$(this).addClass('d-none');
         $('.multi-collapse').collapse('hide');$('.btn-lihat').removeClass('d-none');
 

@@ -819,3 +819,14 @@ section .serv-content {
     opacity: 1 !important;
     transform: translateY(0) !important;
 }
+
+/* Sembunyikan kursor custom secara mutlak pada layar mobile/tablet */
+@media (max-width: 991px) {
+    .cursor-dot,
+    .cursor-outline,
+    .cursor-particle {
+        display: none !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+}
