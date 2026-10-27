@@ -978,3 +978,40 @@ section .serv-content {
 #featured .title::after {
     content: none !important;
 }
+
+
+/* --- Styling & Animasi Pointer Tangan Menunjuk Card --- */
+.click-pointer {
+    position: absolute;
+    width: 40px; /* Ukuran lebar ikon pointer */
+    height: auto;
+    bottom: -25px; /* Posisi relatif di bawah card / dekat teks */
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bouncePointer 1.5s ease-in-out infinite;
+    pointer-events: none; /* Supaya tidak mengganggu klik mouse */
+    z-index: 10;
+  }
+  
+  /* Animasi gerak naik-turun (bouncing) */
+  @keyframes bouncePointer {
+    0%, 100% {
+      transform: translate(-50%, 0);
+    }
+    50% {
+      transform: translate(-50%, -10px); /* Bergerak naik sejauh 10px */
+    }
+  }
+  
+  /* --- Menyembunyikan Animasi/Elemen Tertentu saat Tampilan Mobile --- */
+  @media screen and (max-width: 768px) {
+    .click-pointer {
+      display: none !important; /* Pointer disembunyikan di HP */
+    }
+    
+    /* Jika ada elemen animasi ikon software tertentu yang ingin disembunyikan di mobile, 
+       Anda bisa menambahkan class-nya di sini, contoh: */
+    .software-icon-animation {
+      display: none !important; 
+    }
+  }
