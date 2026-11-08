@@ -206,19 +206,23 @@ $(document).ready(function () {
     }
 
     if (typeof Typed !== 'undefined') {
-        new Typed(".typing", {
-            strings: ["3D Modeller", "Video Editor", "Motion Graphic Designer"],
-            typeSpeed: 100,
-            backSpeed: 60,
-            loop: true
-        });
+        if (document.querySelector(".typing")) {
+            new Typed(".typing", {
+                strings: ["3D Modeller", "Video Editor", "Motion Graphic Designer"],
+                typeSpeed: 100,
+                backSpeed: 60,
+                loop: true
+            });
+        }
 
-        new Typed(".typing-2", {
-            strings: ["3D Modeller", "Video Editor", "Motion Graphic Designer"],
-            typeSpeed: 100,
-            backSpeed: 60,
-            loop: true
-        });
+        if (document.querySelector(".typing-2")) {
+            new Typed(".typing-2", {
+                strings: ["3D Modeller", "Video Editor", "Motion Graphic Designer"],
+                typeSpeed: 100,
+                backSpeed: 60,
+                loop: true
+            });
+        }
     }
 
     // Kategori Proyek: Eksklusif (menutup kategori lain saat pindah) & Sinkronisasi Tombol
@@ -276,7 +280,45 @@ $(document).ready(function () {
     });
 
     var wasMusicPlayingBeforeVideo = false;
-    var bgMusic = document.getElementById("bgMusic");
+    // SUMBER SUARA: di Beranda = suara video showreel; di luar Beranda = musik latar (audio).
+    // "bgMusic" adalah adapter tunggal supaya tombol musik, slider volume, dan modal video
+    // tetap memakai satu status (isPlaying).
+    var heroVideo = document.getElementById("heroVideo");
+    var bgAudio = document.getElementById("bgMusic");
+    var heroInView = true;
+    var wantSound = false;
+    var currentVolume = 0.5;
+
+    function applyAudio() {
+        var result = Promise.resolve();
+        if (heroVideo) {
+            if (heroInView) {
+                heroVideo.muted = !wantSound;
+                heroVideo.volume = currentVolume;
+                var pv = heroVideo.play();
+                if (pv && pv.catch) result = pv;
+            } else {
+                heroVideo.pause();
+            }
+        }
+        if (bgAudio) {
+            bgAudio.volume = currentVolume;
+            if (wantSound && !heroInView) {
+                var pa = bgAudio.play();
+                if (pa && pa.catch) pa.catch(function () { console.log("Musik latar tidak dapat diputar (cek img/audio/background-music.mp3)."); });
+            } else {
+                bgAudio.pause();
+            }
+        }
+        return result;
+    }
+
+    var bgMusic = {
+        get volume() { return currentVolume; },
+        set volume(v) { currentVolume = parseFloat(v); if (heroVideo) heroVideo.volume = currentVolume; if (bgAudio) bgAudio.volume = currentVolume; },
+        play: function () { wantSound = true; return applyAudio(); },
+        pause: function () { wantSound = false; applyAudio(); }
+    };
     var musicBtn = $("#musicBtn");
     var volumeSlider = $("#volumeSlider");
     var morphBlob = $("#morphBlob");
@@ -339,6 +381,62 @@ $(document).ready(function () {
         }
     });
 
+    // AUTOPLAY VIDEO HERO: coba langsung dengan suara; jika diblokir browser,
+    // putar tanpa suara lalu nyalakan suara pada interaksi pertama (klik/tap/tombol).
+    var heroSoundHint = $('#heroSoundHint');
+    function setSoundOnUI() {
+        isPlaying = true;
+        musicBtn.addClass("playing");
+        musicBtn.find('i').removeClass('fa-volume-mute').addClass('fa-music');
+        $('#musicTooltip').removeClass('show');
+        heroSoundHint.removeClass('show');
+        morphBlob.addClass('active');
+        updateAboutPhoto(true);
+    }
+
+    if (heroVideo) {
+        currentVolume = volumeSlider.length ? parseFloat(volumeSlider.val()) : 0.5;
+        wantSound = true;           // coba autoplay dengan suara
+        heroVideo.muted = false;
+        heroVideo.volume = currentVolume;
+        var tryPlay = heroVideo.play();
+        if (tryPlay && tryPlay.then) {
+            tryPlay.then(function () {
+                setSoundOnUI(); // autoplay dengan suara berhasil
+            }).catch(function () {
+                wantSound = false;  // diblokir -> mulai tanpa suara
+                heroVideo.muted = true;
+                heroVideo.play().catch(function () {});
+                heroSoundHint.addClass('show');
+            });
+        }
+
+        // Di luar Beranda: video berhenti & musik latar menggantikan. Kembali ke Beranda: video lagi.
+        var heroEl = document.getElementById('home');
+        if (heroEl && 'IntersectionObserver' in window) {
+            new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    heroInView = entry.isIntersecting;
+                    applyAudio();
+                });
+            }, { threshold: 0.3 }).observe(heroEl);
+        }
+
+        // LATAR BLUR: salin frame video ke canvas kecil (murah), lalu diburamkan lewat CSS
+        var blurCanvas = document.getElementById('heroBlurBg');
+        if (blurCanvas) {
+            var bctx = blurCanvas.getContext('2d');
+            var lastDraw = 0;
+            (function drawBlur(ts) {
+                if (heroInView && ts - lastDraw > 66 && heroVideo.readyState >= 2) {
+                    try { bctx.drawImage(heroVideo, 0, 0, blurCanvas.width, blurCanvas.height); } catch (e) {}
+                    lastDraw = ts;
+                }
+                requestAnimationFrame(drawBlur);
+            })(0);
+        }
+    }
+
     setTimeout(function() {
         if (!isPlaying) {
             $('#musicTooltip').addClass('show');
@@ -375,6 +473,62 @@ $(document).ready(function () {
                 });
             });
 
+            // ===== BUBBLE CHAT SOFTWARE: muncul sesekali di atas ikon =====
+            const chatLines = {
+                'icon-blender': ['Hai, aku Blender! 👋', 'Kipas laptop udah teriak 🔥', 'Render 3 jam... sabar ya 😴', 'Donat lagi? 🍩'],
+                'icon-ae': ['Hai, aku After Effects! ✨', 'RAM kamu aman nggak? 😅', 'Preview-nya loading... 🐌', 'Keyframe-nya jangan lupa di-easing~'],
+                'icon-pr': ['Hai, aku Premiere Pro! 🎬', 'P balap! 🏎️', 'P P P P P 📣', 'Ctrl+S dulu sebelum crash! 💾'],
+                'icon-ai': ['Hai, aku Illustrator! 🖊️', 'Anchor point-nya kebanyakan nih 😵', 'Pen tool is life ✒️', 'Jangan lupa Outline Stroke!'],
+                'icon-ps': ['Hai, aku Photoshop! 🎨', 'Layer 1 copy 27 copy 🤣', 'Save as PNG ya!', 'Ctrl+Z lagi? 😂'],
+                'icon-canva': ['Halo, aku Canva~ 💜', 'Template-nya udah siap! 😎', 'Desain kilat, cuma 5 menit ⚡'],
+                'icon-capcut': ['Hai, aku CapCut! 📱', 'Template viral lagi? 🔥', 'Export dulu, baru tidur 😪']
+            };
+            const lastLine = new WeakMap();
+
+            iconData.forEach(data => {
+                const cls = Object.keys(chatLines).find(c => data.el.classList.contains(c));
+                data.lines = cls ? chatLines[cls] : ['Halo! 👋'];
+                const b = document.createElement('div');
+                b.className = 'icon-chat-bubble';
+                container.appendChild(b);
+                data.bubble = b;
+            });
+
+            function positionBubble(data) {
+                const b = data.bubble;
+                const bw = b.offsetWidth, bh = b.offsetHeight;
+                let left = data.x + data.width / 2 - bw / 2;
+                left = Math.max(0, Math.min(left, container.clientWidth - bw));
+                const top = data.y - bh - 10; // selalu di atas ikon (boleh keluar sedikit dari area ikon)
+                b.style.setProperty('--tail-x', (data.x + data.width / 2 - left) + 'px');
+                b.style.transform = `translate(${left}px, ${top}px)`;
+            }
+
+            function showBubble(data) {
+                const prev = lastLine.get(data.el);
+                let pool = data.lines.filter(l => l !== prev);
+                const line = pool[Math.floor(Math.random() * pool.length)];
+                lastLine.set(data.el, line);
+                data.bubble.textContent = line;
+                data.bubble.classList.add('show');
+                positionBubble(data);
+                setTimeout(() => data.bubble.classList.remove('show'), 3000);
+            }
+
+            function scheduleBubble() {
+                setTimeout(() => {
+                    const r = container.getBoundingClientRect();
+                    const visible = r.bottom > 0 && r.top < window.innerHeight;
+                    const active = iconData.filter(d => d.bubble.classList.contains('show')).length;
+                    if (visible && !document.hidden && active < 2) {
+                        const idle = iconData.filter(d => !d.bubble.classList.contains('show'));
+                        showBubble(idle[Math.floor(Math.random() * idle.length)]);
+                    }
+                    scheduleBubble();
+                }, 1800 + Math.random() * 2400);
+            }
+            scheduleBubble();
+
             function animateIcons() {
                 containerWidth = container.clientWidth;
                 containerHeight = container.clientHeight;
@@ -397,6 +551,7 @@ $(document).ready(function () {
                     else if (data.y >= containerHeight - data.height) { data.y = containerHeight - data.height; data.vy *= -1; }
 
                     data.el.style.transform = `translate(${data.x}px, ${data.y}px)`;
+                    if (data.bubble && data.bubble.classList.contains('show')) positionBubble(data);
                 });
                 requestAnimationFrame(animateIcons);
             }
@@ -410,7 +565,9 @@ $(document).ready(function () {
         }, 50);
     }
 
-    $('body').one('click', function() {
+    $(window).on('load', function () { tampilkanIkonSoftware(); });
+
+    $('body').one('click touchstart keydown', function() {
         if (!isPlaying && bgMusic) {
             bgMusic.play().catch(function(error) { console.log("Autoplay dicegah browser."); });
             isPlaying = true;

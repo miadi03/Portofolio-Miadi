@@ -345,13 +345,115 @@ body.light-mode .theme-toggle-btn { background: #ffffff; color: #d97706; border:
     background-attachment: fixed;
     font-family: 'Ubuntu', sans-serif;
 }
-.home .max-width {
-    width: 100%;
-    display: flex;
-    align-items: center; 
-    justify-content: space-between; 
+/* HERO VIDEO: video di bawah navbar (tidak terpotong), ruang kosong diisi latar blur */
+:root { --nav-h: 82px; --hero-bottom: 56px; }
+.home {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    background: #000;
+    height: 100vh;
+    min-height: 420px;
+    display: block;
 }
-.home .home-content { width: 50%; }
+.hero-blur-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    object-fit: cover;
+    filter: blur(22px) brightness(0.5) saturate(1.2);
+    transform: scale(1.15);
+    pointer-events: none;
+}
+.hero-stage {
+    position: absolute;
+    top: var(--nav-h);
+    bottom: var(--hero-bottom);
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+.hero-sound-hint {
+    position: absolute;
+    left: 50%;
+    bottom: calc(var(--hero-bottom) + 16px);
+    transform: translateX(-50%);
+    z-index: 3;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+.hero-sound-hint.show { opacity: 1; }
+.hero-scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    transform: translateX(-50%);
+    z-index: 3;
+    color: #fff;
+    font-size: 34px;
+    line-height: 1;
+    animation: bounceCue 1.6s ease-in-out infinite;
+}
+@keyframes bounceCue {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 8px); }
+}
+/* Tablet & HP: tinggi hero mengikuti rasio video 16:9 (tanpa ruang kosong berlebih) */
+@media (max-width: 991px) {
+    .home {
+        height: calc(var(--nav-h) + 56.25vw + var(--hero-bottom));
+        min-height: 0;
+    }
+    .hero-sound-hint { font-size: 12px; max-width: 92vw; overflow: hidden; text-overflow: ellipsis; }
+}
+@media (max-width: 480px) {
+    :root { --hero-bottom: 50px; }
+    .hero-scroll-cue { font-size: 28px; }
+}
+
+/* Strip software (ikon melayang) */
+.tools-strip {
+    padding: 40px 0 30px;
+    background: var(--section-alt);
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+.tools-title {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--text-color);
+    margin-bottom: 14px;
+}
+.tools-strip .software-icons { height: 170px; overflow: visible; margin-top: 50px; }
+@media (max-width: 575px) {
+    .tools-strip .software-icons { height: 140px; }
+    .tools-strip .icon-blender { width: 64px; height: 64px; }
+    .tools-strip .icon-ae { width: 54px; height: 54px; }
+    .tools-strip .icon-pr { width: 52px; height: 52px; }
+    .tools-strip .icon-ai { width: 48px; height: 48px; }
+    .tools-strip .icon-ps { width: 58px; height: 58px; }
+    .tools-strip .icon-canva { width: 42px; height: 42px; }
+    .tools-strip .icon-capcut { width: 44px; height: 44px; }
+}
+#featured { scroll-margin-top: 50px; }
 
 .availability-badge {
     display: inline-flex;
@@ -1015,3 +1117,51 @@ section .serv-content {
       display: none !important; 
     }
   }
+
+/* Bubble chat dari ikon software */
+.icon-chat-bubble {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    max-width: 190px;
+    width: max-content;
+    padding: 8px 14px;
+    border-radius: 14px;
+    background: #fff;
+    color: #1a1a1a;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.35;
+    text-align: left;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s;
+}
+.icon-chat-bubble.show { opacity: 1; visibility: visible; animation: bubblePop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.icon-chat-bubble::after {
+    content: '';
+    position: absolute;
+    left: var(--tail-x, 50%);
+    bottom: -6px;
+    margin-left: -6px;
+    border-width: 6px 6px 0;
+    border-style: solid;
+    border-color: #fff transparent;
+}
+.icon-chat-bubble.below::after {
+    bottom: auto;
+    top: -6px;
+    border-width: 0 6px 6px;
+}
+@keyframes bubblePop {
+    0% { opacity: 0; filter: blur(2px); }
+    100% { opacity: 1; filter: blur(0); }
+}
+body.light-mode .icon-chat-bubble { background: #fff; color: #0f172a; border: 1px solid #e2e8f0; }
+@media (max-width: 575px) {
+    .icon-chat-bubble { max-width: 140px; font-size: 11.5px; padding: 6px 10px; }
+}

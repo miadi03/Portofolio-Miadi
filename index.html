@@ -27,9 +27,9 @@
     <div class="cursor-dot" id="cursorDot"></div>
     <div class="cursor-outline" id="cursorOutline"></div>
 
-    <!-- ELEMEN AUDIO MUSIK LATAR OFFLINE -->
-    <audio id="bgMusic" loop>
-        <source src="img/audio/background-music.mp3" type="audio/mpeg">
+    <!-- MUSIK LATAR: diputar saat di luar bagian Beranda (di Beranda suara berasal dari video showreel) -->
+    <audio id="bgMusic" loop preload="none">
+        <source src="img/audio/sound-3.mp3" type="audio/mpeg">
     </audio>
 
     <!-- KONTAINER TOMBOL MELAYANG (MUSIK & THEME TOGGLE DI KANAN BAWAH) -->
@@ -41,11 +41,11 @@
 
         <!-- TOMBOL MUSIK & SLIDER VOLUME HORIZONTAL -->
         <div class="music-wrapper">
-            <div class="music-tooltip" id="musicTooltip">Mau denger musik? 🎵</div>
+            <div class="music-tooltip" id="musicTooltip">Nyalakan suara 🔊</div>
             <div class="volume-slider-box">
                 <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.5" class="volume-slider">
             </div>
-            <div class="floating-btn music-btn" id="musicBtn" title="Putar/Jeda Musik">
+            <div class="floating-btn music-btn" id="musicBtn" title="Nyalakan/Matikan Suara Video">
                 <i class="fas fa-volume-mute"></i>
             </div>
         </div>
@@ -72,37 +72,17 @@
         </div>
     </nav>
 
-    <!-- home section start -->
+    <!-- home section start: VIDEO SHOWREEL (autoplay, loop, dengan suara) -->
     <section class="home" id="home">
-        <div class="max-width align-items-center">
-            <div class="home-content">
-                <!-- AVAILABILITY BADGE -->
-                <div class="availability-badge mb-3">
-                    <span class="badge-dot"></span> Open for Freelance & Projects
-                </div>
-                
-                <div class="text-1">Halo, Nama Saya </div>
-                <div class="text-2">Miadi</div>
-                <div class="text-3">Saya seorang <span class="typing"></span></div>
-                
-                <div class="hero-buttons">
-                    <a href="#about" class="btn-main clean-link">Selengkapnya..</a>
-                </div>
-            </div>
-
-            <!-- BAGIAN KANAN: IKON SOFTWARE MELAYANG -->
-            <div class="hero-visual">
-                <div class="software-icons">
-                    <img src="img/apk/Blender.png" alt="Blender" class="float-icon icon-blender">
-                    <img src="img/apk/ae.png" alt="After Effects" class="float-icon icon-ae">
-                    <img src="img/apk/pr.png" alt="Premiere Pro" class="float-icon icon-pr">
-                    <img src="img/apk/ai.webp" alt="Illustrator" class="float-icon icon-ai">
-                    <img src="img/apk/ps.png" alt="Photoshop" class="float-icon icon-ps">
-                    <img src="img/apk/canva.jpg" alt="Canva" class="float-icon icon-canva">
-                    <img src="img/apk/capcut.png" alt="CapCut" class="float-icon icon-capcut">
-                </div>
-            </div>
+        <!-- Latar blur: gambar video yang sama, diperbesar & diburamkan untuk mengisi ruang kosong -->
+        <canvas class="hero-blur-bg" id="heroBlurBg" width="96" height="54" aria-hidden="true"></canvas>
+        <div class="hero-stage">
+            <video id="heroVideo" class="hero-video" autoplay loop playsinline preload="auto">
+                <source src="img/video/showreel_miadi.mp4" type="video/mp4">
+            </video>
         </div>
+        <div class="hero-sound-hint" id="heroSoundHint"><i class="fas fa-volume-up"></i> Klik di mana saja untuk menyalakan suara</div>
+        <a href="#featured" class="hero-scroll-cue clean-link" aria-label="Gulir ke Karya Unggulan"><i class="fas fa-angle-down"></i></a>
     </section>
 
     <!-- CAROUSEL KARYA UNGGULAN (FULL-WIDTH CINEMATIC STYLE) -->
@@ -222,8 +202,21 @@
         </div>
     </section>
 
-
-
+    <!-- SOFTWARE YANG SAYA GUNAKAN (strip kecil di antara Tentang Saya dan Proyek) -->
+    <section class="tools-strip" id="tools">
+        <div class="max-width">
+            <h3 class="tools-title">Software yang Saya Gunakan</h3>
+            <div class="software-icons">
+                <img src="img/apk/Blender.png" alt="Blender" class="float-icon icon-blender">
+                <img src="img/apk/ae.png" alt="After Effects" class="float-icon icon-ae">
+                <img src="img/apk/pr.png" alt="Premiere Pro" class="float-icon icon-pr">
+                <img src="img/apk/ai.webp" alt="Illustrator" class="float-icon icon-ai">
+                <img src="img/apk/ps.png" alt="Photoshop" class="float-icon icon-ps">
+                <img src="img/apk/canva.jpg" alt="Canva" class="float-icon icon-canva">
+                <img src="img/apk/capcut.png" alt="CapCut" class="float-icon icon-capcut">
+            </div>
+        </div>
+    </section>
 
     <!-- services section start (3D Modelling di depan, diikuti Motion Grafik, dll) -->
     <section class="services" id="services">
