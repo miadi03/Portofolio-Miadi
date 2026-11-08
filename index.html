@@ -21,6 +21,21 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+    <noscript><style>.intro-overlay{display:none !important}</style></noscript>
+
+    <!-- LAYAR PEMBUKA: satu klik untuk memulai showreel dengan suara (browser mewajibkan interaksi untuk suara) -->
+    <div class="intro-overlay" id="introOverlay" role="dialog" aria-label="Layar pembuka">
+        <div class="intro-content">
+            <div class="intro-kicker">Portofolio</div>
+            <h1 class="intro-name">Miadi</h1>
+            <p class="intro-roles">3D Artist &bull; Motion Graphic Designer &bull; Video Editor</p>
+            <button type="button" class="intro-play" id="introPlayBtn">
+                <i class="fas fa-play"></i> <span>Putar Showreel</span>
+            </button>
+            <p class="intro-note"><i class="fas fa-volume-up"></i> Sebaiknya dengan suara menyala</p>
+        </div>
+    </div>
+
     
     <!-- ELEMEN KURSOR CUSTOM MOUSE -->
     <div class="cursor-dot" id="cursorDot"></div>
@@ -40,7 +55,6 @@
 
         <!-- TOMBOL MUSIK & SLIDER VOLUME HORIZONTAL -->
         <div class="music-wrapper">
-            <div class="music-tooltip" id="musicTooltip">Nyalakan suara 🔊</div>
             <div class="volume-slider-box">
                 <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.5" class="volume-slider">
             </div>
@@ -76,7 +90,7 @@
         <!-- Latar blur: gambar video yang sama, diperbesar & diburamkan untuk mengisi ruang kosong -->
         <canvas class="hero-blur-bg" id="heroBlurBg" width="96" height="54" aria-hidden="true"></canvas>
         <div class="hero-stage">
-            <video id="heroVideo" class="hero-video" autoplay loop playsinline preload="auto" poster="img/video/showreel_poster.jpg"></video>
+            <video id="heroVideo" class="hero-video" loop playsinline preload="auto" poster="img/video/showreel_poster.jpg"></video>
             <script>
                 // Pilih versi video sebelum mulai mengunduh: HP / data hemat -> versi kecil (540p, ~3,5 MB)
                 (function () {
@@ -87,7 +101,6 @@
                 })();
             </script>
         </div>
-        <div class="hero-sound-hint" id="heroSoundHint"><i class="fas fa-volume-up"></i> Klik di mana saja untuk menyalakan suara</div>
         <a href="#featured" class="hero-scroll-cue clean-link" aria-label="Gulir ke Karya Unggulan"><i class="fas fa-angle-down"></i></a>
     </section>
 

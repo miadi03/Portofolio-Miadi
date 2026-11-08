@@ -287,10 +287,12 @@ $(document).ready(function () {
     var bgAudio = document.getElementById("bgMusic");
     var heroInView = true;
     var wantSound = false;
+    var introDone = false; // video & suara baru mulai setelah tombol di layar pembuka diklik
     var currentVolume = 0.5;
 
     function applyAudio() {
         var result = Promise.resolve();
+        if (!introDone) return result;
         if (heroVideo) {
             if (heroInView) {
                 heroVideo.muted = !wantSound;
@@ -381,36 +383,36 @@ $(document).ready(function () {
         }
     });
 
-    // AUTOPLAY VIDEO HERO: coba langsung dengan suara; jika diblokir browser,
-    // putar tanpa suara lalu nyalakan suara pada interaksi pertama (klik/tap/tombol).
-    var heroSoundHint = $('#heroSoundHint');
+    // SETELAH TOMBOL "PUTAR SHOWREEL" DIKLIK: video mulai dari awal dengan suara (klik = izin dari browser)
     function setSoundOnUI() {
         isPlaying = true;
         musicBtn.addClass("playing");
         musicBtn.find('i').removeClass('fa-volume-mute').addClass('fa-music');
-        $('#musicTooltip').removeClass('show');
-        heroSoundHint.removeClass('show');
         morphBlob.addClass('active');
         updateAboutPhoto(true);
     }
 
-    if (heroVideo) {
-        currentVolume = volumeSlider.length ? parseFloat(volumeSlider.val()) : 0.5;
-        wantSound = true;           // coba autoplay dengan suara
-        heroVideo.muted = false;
-        heroVideo.volume = currentVolume;
-        var tryPlay = heroVideo.play();
-        if (tryPlay && tryPlay.then) {
-            tryPlay.then(function () {
-                setSoundOnUI(); // autoplay dengan suara berhasil
-            }).catch(function () {
-                wantSound = false;  // diblokir -> mulai tanpa suara
-                heroVideo.muted = true;
-                heroVideo.play().catch(function () {});
-                heroSoundHint.addClass('show');
-            });
-        }
+    var introOverlay = document.getElementById('introOverlay');
+    $('body').addClass('intro-lock');
+    window.scrollTo(0, 0);
 
+    $('#introPlayBtn').on('click', function () {
+        introDone = true;
+        wantSound = true;
+        currentVolume = volumeSlider.length ? parseFloat(volumeSlider.val()) : 0.5;
+        if (heroVideo) { heroVideo.currentTime = 0; }
+        applyAudio();
+        sfxEnabled = true;
+        setSoundOnUI();
+        if (introOverlay) {
+            introOverlay.classList.add('hide');
+            setTimeout(function () { if (introOverlay.parentNode) introOverlay.parentNode.removeChild(introOverlay); }, 900);
+        }
+        $('body').removeClass('intro-lock');
+    });
+    setTimeout(function () { $('#introPlayBtn').trigger('focus'); }, 100);
+
+    if (heroVideo) {
         // Di luar Beranda: video berhenti & musik latar menggantikan. Kembali ke Beranda: video lagi.
         var heroEl = document.getElementById('home');
         if (heroEl && 'IntersectionObserver' in window) {
@@ -437,11 +439,7 @@ $(document).ready(function () {
         }
     }
 
-    setTimeout(function() {
-        if (!isPlaying) {
-            $('#musicTooltip').addClass('show');
-        }
-    }, 2000);
+
 
     function tampilkanIkonSoftware() {
         const icons = document.querySelectorAll('.float-icon');
@@ -566,19 +564,6 @@ $(document).ready(function () {
     }
 
     $(window).on('load', function () { tampilkanIkonSoftware(); });
-
-    $('body').one('click touchstart keydown', function() {
-        if (!isPlaying && bgMusic) {
-            bgMusic.play().catch(function(error) { console.log("Autoplay dicegah browser."); });
-            isPlaying = true;
-            musicBtn.addClass("playing");
-            musicBtn.find('i').removeClass('fa-volume-mute').addClass('fa-music');
-            $('#musicTooltip').removeClass('show'); 
-            morphBlob.addClass('active');
-            updateAboutPhoto(true);
-            tampilkanIkonSoftware(); 
-        }
-    });
 
     volumeSlider.on('input', function() {
         if (bgMusic) {
