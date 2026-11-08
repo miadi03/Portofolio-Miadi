@@ -410,7 +410,31 @@ $(document).ready(function () {
         }
         $('body').removeClass('intro-lock');
     });
-    setTimeout(function () { $('#introPlayBtn').trigger('focus'); }, 100);
+    // Tombol aktif setelah video siap diputar (maks. 8 detik), supaya gambar & suara mulai bersamaan
+    var introBtn = $('#introPlayBtn');
+    var introLabel = introBtn.find('span');
+    var introReady = false;
+    function enableIntroBtn() {
+        if (introReady) return;
+        introReady = true;
+        introBtn.prop('disabled', false).removeClass('loading');
+        introLabel.text('Putar Showreel');
+        introBtn.trigger('focus');
+    }
+    introBtn.prop('disabled', true).addClass('loading');
+    introLabel.text('Memuat showreel...');
+    if (heroVideo) {
+        if (heroVideo.readyState >= 3) enableIntroBtn();
+        heroVideo.addEventListener('canplay', enableIntroBtn);
+        heroVideo.addEventListener('error', enableIntroBtn);
+        // Setiap video benar-benar mulai/lanjut diputar, pastikan status suara sesuai pilihan pengunjung
+        heroVideo.addEventListener('playing', function () {
+            if (!introDone) return;
+            heroVideo.muted = !wantSound;
+            heroVideo.volume = currentVolume;
+        });
+    }
+    setTimeout(enableIntroBtn, 8000);
 
     if (heroVideo) {
         // Di luar Beranda: video berhenti & musik latar menggantikan. Kembali ke Beranda: video lagi.
@@ -563,7 +587,8 @@ $(document).ready(function () {
         }, 50);
     }
 
-    $(window).on('load', function () { tampilkanIkonSoftware(); });
+    // Ikon punya ukuran tetap dari CSS, jadi bisa langsung mulai (tidak perlu menunggu video/gambar selesai dimuat)
+    tampilkanIkonSoftware();
 
     volumeSlider.on('input', function() {
         if (bgMusic) {

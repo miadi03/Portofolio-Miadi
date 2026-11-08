@@ -1229,3 +1229,6 @@ body.light-mode .icon-chat-bubble { background: #fff; color: #0f172a; border: 1p
 }
 .intro-note { margin: 18px 0 0; font-size: 13px; color: #9ca3af; }
 body.intro-lock { overflow: hidden; }
+
+.intro-play.loading { opacity: 0.75; cursor: progress; animation: none; }
+.intro-play:disabled { pointer-events: none; }
