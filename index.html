@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="style_portofolio.css">
 
     <!-- cdn icon terbaru -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     
     <!-- jQuery & Typed.js -->
@@ -29,7 +28,7 @@
 
     <!-- MUSIK LATAR: diputar saat di luar bagian Beranda (di Beranda suara berasal dari video showreel) -->
     <audio id="bgMusic" loop preload="none">
-        <source src="img/audio/sound-3.mp3" type="audio/mpeg">
+        <source src="img/audio/background-music.mp3" type="audio/mpeg">
     </audio>
 
     <!-- KONTAINER TOMBOL MELAYANG (MUSIK & THEME TOGGLE DI KANAN BAWAH) -->
@@ -77,9 +76,16 @@
         <!-- Latar blur: gambar video yang sama, diperbesar & diburamkan untuk mengisi ruang kosong -->
         <canvas class="hero-blur-bg" id="heroBlurBg" width="96" height="54" aria-hidden="true"></canvas>
         <div class="hero-stage">
-            <video id="heroVideo" class="hero-video" autoplay loop playsinline preload="auto">
-                <source src="img/video/showreel_miadi.mp4" type="video/mp4">
-            </video>
+            <video id="heroVideo" class="hero-video" autoplay loop playsinline preload="auto" poster="img/video/showreel_poster.jpg"></video>
+            <script>
+                // Pilih versi video sebelum mulai mengunduh: HP / data hemat -> versi kecil (540p, ~3,5 MB)
+                (function () {
+                    var v = document.getElementById('heroVideo');
+                    var c = navigator.connection || {};
+                    var small = window.innerWidth <= 768 || c.saveData || /2g/.test(c.effectiveType || '');
+                    v.src = small ? 'img/video/showreel_miadi_mobile.mp4' : 'img/video/showreel_miadi.mp4';
+                })();
+            </script>
         </div>
         <div class="hero-sound-hint" id="heroSoundHint"><i class="fas fa-volume-up"></i> Klik di mana saja untuk menyalakan suara</div>
         <a href="#featured" class="hero-scroll-cue clean-link" aria-label="Gulir ke Karya Unggulan"><i class="fas fa-angle-down"></i></a>
