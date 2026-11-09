@@ -1232,3 +1232,35 @@ body.intro-lock { overflow: hidden; }
 
 .intro-play.loading { opacity: 0.75; cursor: progress; animation: none; }
 .intro-play:disabled { pointer-events: none; }
+
+/* Indikator loading di layar pembuka */
+.intro-play.loading i { display: none; }
+.intro-play.loading::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    border: 3px solid rgba(255,255,255,0.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: introSpin 0.8s linear infinite;
+}
+@keyframes introSpin { to { transform: rotate(360deg); } }
+.intro-progress {
+    width: min(260px, 70vw);
+    height: 4px;
+    margin: 22px auto 0;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.15);
+    overflow: hidden;
+    transition: opacity 0.4s ease;
+}
+.intro-progress.done { opacity: 0; }
+.intro-progress-bar {
+    width: 40%;
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, crimson, #ffcc00);
+    animation: introSlide 1.2s ease-in-out infinite;
+}
+@keyframes introSlide { 0% { transform: translateX(-110%); } 100% { transform: translateX(260%); } }
+.intro-note { transition: opacity 0.3s ease; }

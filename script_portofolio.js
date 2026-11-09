@@ -419,10 +419,13 @@ $(document).ready(function () {
         introReady = true;
         introBtn.prop('disabled', false).removeClass('loading');
         introLabel.text('Putar Showreel');
+        $('#introProgress').addClass('done');
+        $('#introNote').find('span').text('Sebaiknya dengan suara menyala');
         introBtn.trigger('focus');
     }
     introBtn.prop('disabled', true).addClass('loading');
-    introLabel.text('Memuat showreel...');
+    introLabel.text('Mohon tunggu sebentar...');
+    $('#introNote').find('span').text('Sedang menyiapkan showreel');
     if (heroVideo) {
         if (heroVideo.readyState >= 3) enableIntroBtn();
         heroVideo.addEventListener('canplay', enableIntroBtn);
